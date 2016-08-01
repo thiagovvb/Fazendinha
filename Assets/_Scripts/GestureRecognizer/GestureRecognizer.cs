@@ -17,16 +17,18 @@ public class GestureRecognizer : MonoBehaviour {
 	private Classifier c;
 	private Classifier gesturec;
 	//private int j;
-	private List<double[]> emgBef;
-	private List<double[]> emgAft;
+	private List<double[]> emgData;
 	private int currentGesture;
+
+	private float startTime;
+	private bool isTime;
 
 	// Use this for initialization
 	void Start () {
 
-		emgBef = new List<double[]>();
-		emgAft = new List<double[]>();
+		emgData = new List<double[]>();
 		writing = false;
+		isTime = false;
 
 		//j = 0;
 		/*file = new System.IO.StreamWriter("bancoMovimento.csv");
@@ -65,7 +67,7 @@ public class GestureRecognizer : MonoBehaviour {
 		Debug.Log("NLines = " + d2.getNLines());
 
 		Debug.Log("Taxa de acerto = " + ((float)correct)/d2.getNLines());
-	
+
 	}
 
 	public int classifyGesture(double[,] matMaxMin){
@@ -73,7 +75,7 @@ public class GestureRecognizer : MonoBehaviour {
 		double[] input = new double[16];
 
 		for(int i = 0; i < 8; i++){
-		
+
 			input[i*2] = matMaxMin[i,0];
 			input[i*2 + 1] = matMaxMin[i,1];
 
@@ -89,25 +91,18 @@ public class GestureRecognizer : MonoBehaviour {
 	}
 
 	public void setClassifier(Classifier c){
-	
+
 		this.c = c;
-	
-	}
-
-	void UpdateListBef(double[] emg){
-
-		emgBef.Add(emg);
-		if(emgBef.Count > 300) emgBef.RemoveAt(0);
 
 	}
 
-	double[,] getMaxAndMin(List<double[]> a1, List<double[]>a2){
-	
+	double[,] getMaxAndMin(List<double[]> a1){
+
 		double[] minValue = new double[8];
 		double[] maxValue = new double[8];
 
 		for(int i = 0; i < 8; i++){
-		
+
 			minValue[0] = maxValue[0] = a1[0][0];
 			minValue[1] = maxValue[1] = a1[0][1];
 			minValue[2] = maxValue[2] = a1[0][2];
@@ -120,25 +115,20 @@ public class GestureRecognizer : MonoBehaviour {
 		}
 
 		for(int i = 1; i < a1.Count; i++){
-		
+
 			for(int j = 0; j < 8; j++){
-			
+
 				if(minValue[j] > a1[i][j]) minValue[j] = a1[i][j];
-				if(minValue[j] > a2[i][j]) minValue[j] = a2[i][j];
 
 				if(maxValue[j] < a1[i][j]) maxValue[j] = a1[i][j];
-				if(maxValue[j] < a2[i][j]) maxValue[j] = a2[i][j];
-			
-			}
-		
-		}
 
-		a1.Clear();
-		a2.Clear();
+			}
+
+		}
 
 		double[,] matMinMax = new double[8,2];
 		for(int i = 0; i < 8; i++){
-		
+
 			matMinMax[i,0] = minValue[i];
 			matMinMax[i,1] = maxValue[i];
 
@@ -153,9 +143,38 @@ public class GestureRecognizer : MonoBehaviour {
 		return matMinMax;
 
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
+
+		ThalmicHub hub = ThalmicHub.instance;
+		ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
+		float time;
+
+		int[] emg = thalmicMyo.emg;
+		double[] emgDouble = new double[emg.Length];
+
+		for(int i = 0; i < emg.Length; i++){
+			emgDouble[i] = emg[i];
+		}
+			
+		if(!isTime){
+			startTime = Time.time;
+			isTime = true;
+		}else{
+			time = Time.time;
+
+			if(time - startTime > 1){
+				isTime = false;
+				int gesture = classifyGesture(getMaxAndMin(emgData));
+				Debug.Log("Gesture: " + gesture);
+			}else{
+				emgData.Add(emgDouble);
+			}
+
+
+		}
+
 
 		/*ThalmicHub hub = ThalmicHub.instance;
 		ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
@@ -235,7 +254,7 @@ public class GestureRecognizer : MonoBehaviour {
 
 		//print(" emg [1] = " + (int)emg[0] + " emg [2] = " + (int)emg[1] + " emg [3] = " + (int)emg[2] + " emg [4] = " + (int)emg[3] +
 		//	  " emg [5] = " + (int)emg[4] + " emg [6] = " + (int)emg[5] + " emg [7] = " + (int)emg[6] + " emg [8] = " + (int)emg[7]);
-	
+
 	}
 
 

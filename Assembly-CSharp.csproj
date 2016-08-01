@@ -76,13 +76,13 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="AForge.Controls">
- <HintPath>C:/Users/Thiago/Dropbox/PPGMDS/Programas/Fazendinha/Assets/AForge.Controls.dll</HintPath>
+ <HintPath>C:/Users/Thiago/Documents/GitHub/Fazendinha/Assets/AForge.Controls.dll</HintPath>
  </Reference>
  <Reference Include="AForge">
- <HintPath>C:/Users/Thiago/Dropbox/PPGMDS/Programas/Fazendinha/Assets/AForge.dll</HintPath>
+ <HintPath>C:/Users/Thiago/Documents/GitHub/Fazendinha/Assets/AForge.dll</HintPath>
  </Reference>
  <Reference Include="AForge.Neuro">
- <HintPath>C:/Users/Thiago/Dropbox/PPGMDS/Programas/Fazendinha/Assets/AForge.Neuro.dll</HintPath>
+ <HintPath>C:/Users/Thiago/Documents/GitHub/Fazendinha/Assets/AForge.Neuro.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
