@@ -13,6 +13,8 @@ public class Classifier {
 	private ActivationNetwork network;
 	private double[][] input;
 	private double[][] output;
+	double[] maxValue;
+	double[] minValue;
 
 	public Classifier(Dataset ds){
 
@@ -24,6 +26,14 @@ public class Classifier {
 	
 		ds.openAndLoad();
 
+	}
+
+	public double[] getMinValue(){
+		return minValue;
+	}
+
+	public double[] getMaxValue(){
+		return maxValue;
 	}
 
 	public double[] compute(double[] inpt){
@@ -38,13 +48,15 @@ public class Classifier {
 
 	public int convertToNumerical(double[] inpt){
 
+		int maxPos = 0;
+
 		for(int i = 0; i < inpt.Length; i++){
 
-			if(Mathf.RoundToInt((float)inpt[i]) == 1) return i;
+			if(inpt[i] > inpt[maxPos] ) maxPos = i;
 
 		}
 
-		return -1;
+		return maxPos;
 
 	}
 
@@ -79,7 +91,7 @@ public class Classifier {
 
 	}
 
-	public double[][] normalizeDataset(double[][] dataset){
+	public double[][] normalizeDataset(double[][] dataset, bool saveMaxMin = false){
 
 		int xMax = dataset.Length; //360
 		int yMax = dataset[0].Length; //16
@@ -131,6 +143,17 @@ public class Classifier {
 
 		}
 
+		if(saveMaxMin){
+			this.maxValue = maxValue;
+			this.minValue = minValue;
+		}
+			
+		for(int i = 0; i < 8; i++){
+
+			if(saveMaxMin) Debug.Log("Min[" + i + "] = " + minValue[i] + " and Max[" + i + "] = " + maxValue[i]);
+
+		}
+
 		return normalizedDataset;
 
 	}
@@ -157,14 +180,7 @@ public class Classifier {
 
 		}
 
-		input = normalizeDataset(input);
-
-		for(int i = 0; i < ds.getNLines(); i++){
-			for(int j = 0; j < ds.getNFeatures(); j++){
-				//Debug.Log("i = " + i + " j = " + j + " : " + input[i][j]);
-			}
-			//Debug.Log("Output for i = " + i + " = " + output[i][0]);
-		}
+		input = normalizeDataset(input, true);
 
 		BackPropagationLearning teacher = new BackPropagationLearning(network);
 

@@ -51,7 +51,7 @@ public class GestureRecognizer : MonoBehaviour {
 
 		c.openDataset();
 		c.setupNetwork(16, new int[2]{10,5});
-		c.trainBackprop(1000,0.3,0.2);
+		c.trainBackprop(1000,0.25,0.2);
 
 		d2.openAndLoad();
 
@@ -61,12 +61,35 @@ public class GestureRecognizer : MonoBehaviour {
 		for(int i = 0; i < sample.Length; i++){
 
 			if(sample[i] == d2.getValueClass(i)) correct++;
+			Debug.Log(sample[i] + " " + d2.getValueClass(i));
 
 		}
+
+		/*double[] sample2 = new double[16]{-38,36,-19,12,-9,15,-5,6,-5,2,-5,2,-6,4,-38,23};
+
+		double[] samplenorm = normalizeData(c,sample2);
+
+		Debug.Log(c.convertToNumerical(c.compute(samplenorm)));*/
+
+		//for(int i = 0; i < 16; i++){
+		//	Debug.Log("i = " + i + " " + samplenorm[i]);
+		//}
 
 		Debug.Log("NLines = " + d2.getNLines());
 
 		Debug.Log("Taxa de acerto = " + ((float)correct)/d2.getNLines());
+
+	}
+
+	public double[] normalizeData(Classifier cls, double[] data){
+
+		double[] normData = new double[data.Length];
+
+		for(int i = 0; i < data.Length; i++){
+			normData[i] = (data[i] - (cls.getMaxValue()[i] + cls.getMinValue()[i])/2) / ((cls.getMaxValue()[i] - cls.getMinValue()[i])/2);
+		}
+
+		return normData;
 
 	}
 
@@ -81,12 +104,12 @@ public class GestureRecognizer : MonoBehaviour {
 
 		}
 
-		Debug.Log("[0]: " + input[0] + "[1]: " + input[1] + "[2]: " + input[2] + "[3]: " + input[3] + "[4]: " + input[4] +
-			"[5]: " + input[5] + "[6]: " + input[6] + "[7]: " + input[7] + "[8]: " + input[8] + "[9]: " + input[9] +
-			"[10]: " + input[10] + "[11]: " + input[11] + "[12]: " + input[12] + "[13]: " + input[13] + "[14]: " + input[14] +
-			"[15]: " + input[15]);
+		//Debug.Log("[0]: " + input[0] + "[1]: " + input[1] + "[2]: " + input[2] + "[3]: " + input[3] + "[4]: " + input[4] +
+		//	"[5]: " + input[5] + "[6]: " + input[6] + "[7]: " + input[7] + "[8]: " + input[8] + "[9]: " + input[9] +
+		//	"[10]: " + input[10] + "[11]: " + input[11] + "[12]: " + input[12] + "[13]: " + input[13] + "[14]: " + input[14] +
+		//	"[15]: " + input[15]);
 
-		return gesturec.convertToNumerical(gesturec.compute(input));
+		return c.convertToNumerical(c.compute(normalizeData(c,input)));
 
 	}
 
@@ -134,12 +157,6 @@ public class GestureRecognizer : MonoBehaviour {
 
 		}
 
-		//string line1 = minValue[0] + "," + minValue[1] + "," + minValue[2] + "," + minValue[3] + "," + minValue[4] + "," + minValue[5] + "," + minValue[6] + "," + minValue[7];
-		//string line2 = maxValue[0] + "," + maxValue[1] + "," + maxValue[2] + "," + maxValue[3] + "," + maxValue[4] + "," + maxValue[5] + "," + maxValue[6] + "," + maxValue[7];
-
-		//Debug.Log("Min: " + line1);
-		//Debug.Log("Max: " + line2);
-
 		return matMinMax;
 
 	}
@@ -164,9 +181,10 @@ public class GestureRecognizer : MonoBehaviour {
 		}else{
 			time = Time.time;
 
-			if(time - startTime > 1){
+			if(time - startTime > 2){
 				isTime = false;
 				int gesture = classifyGesture(getMaxAndMin(emgData));
+				emgData.Clear();
 				Debug.Log("Gesture: " + gesture);
 			}else{
 				emgData.Add(emgDouble);
