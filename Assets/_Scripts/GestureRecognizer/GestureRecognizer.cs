@@ -37,10 +37,10 @@ public class GestureRecognizer : MonoBehaviour {
 		//Dataset d1 = new Dataset("bancoFinal.csv");
 		//Dataset d2 = new Dataset("treinamento_programa.csv");
 		//Dataset d2 = new Dataset("bancoFinal.csv");
-		Dataset d3 = new Dataset("treinamento_final.csv");
+		Dataset d3 = new Dataset("cjnovo_dados2.csv");
 
-		Dataset d1 = new Dataset("treinamento_final.csv");
-		Dataset d2 = new Dataset("treinamento_final.csv");
+		Dataset d1 = new Dataset("cjnovo_dados2.csv");
+		Dataset d2 = new Dataset("cjnovo_dados2.csv");
 
 		c = new Classifier(d1);
 		//gesturec = new Classifier(d3);
@@ -181,7 +181,7 @@ public class GestureRecognizer : MonoBehaviour {
 		}else{
 			time = Time.time;
 
-			if(time - startTime > 2){
+			if(time - startTime > 1){
 				isTime = false;
 				int gesture = classifyGesture(getMaxAndMin(emgData));
 				emgData.Clear();
