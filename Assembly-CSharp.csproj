@@ -68,6 +68,7 @@
      <Compile Include="Assets\_Scripts\Classificador\TestNeuralN.cs" />
      <Compile Include="Assets\_Scripts\GestureRecognizer\GestureRecognizer.cs" />
      <Compile Include="Assets\_Scripts\MyoRawData.cs" />
+     <None Include="Assets\Textures\Textures.txt" />
      <None Include="Assets\Myo\README-MyoUnity.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
