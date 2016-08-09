@@ -67,6 +67,7 @@
      <Compile Include="Assets\_Scripts\Classificador\Dataset.cs" />
      <Compile Include="Assets\_Scripts\Classificador\TestNeuralN.cs" />
      <Compile Include="Assets\_Scripts\GestureRecognizer\GestureRecognizer.cs" />
+     <Compile Include="Assets\_Scripts\GiraMilho\CollisionDetection.cs" />
      <Compile Include="Assets\_Scripts\GiraMilho\GameController.cs" />
      <Compile Include="Assets\_Scripts\MyoRawData.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
