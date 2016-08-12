@@ -70,6 +70,7 @@
      <Compile Include="Assets\_Scripts\GiraMilho\CollisionDetection.cs" />
      <Compile Include="Assets\_Scripts\GiraMilho\GameController.cs" />
      <Compile Include="Assets\_Scripts\MyoRawData.cs" />
+     <Compile Include="Assets\_Scripts\Vaquinha\GameController_Vaq.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Textures\Textures.txt" />
      <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
