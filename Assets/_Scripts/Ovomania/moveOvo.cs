@@ -11,11 +11,15 @@ public class moveOvo : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if (transform.position.z < -0.3) {
-			Debug.Log("nhe");
+		Rigidbody r = gameObject.GetComponent(typeof(Rigidbody)) as Rigidbody;
+
+		if (transform.position.z < 0.3) {
+
 			transform.RotateAround(transform.position,transform.up, -Time.deltaTime * 90);
 			transform.Translate(new Vector3(0,0,Time.deltaTime), Space.World);
+		}else if(!r.useGravity){
+			r.useGravity = true;
+			this.enabled = false;
 		}
-
 	}
 }
