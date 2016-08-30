@@ -66,6 +66,11 @@
      <Compile Include="Assets\_Scripts\Classificador\Classifier.cs" />
      <Compile Include="Assets\_Scripts\Classificador\Dataset.cs" />
      <Compile Include="Assets\_Scripts\Classificador\TestNeuralN.cs" />
+     <Compile Include="Assets\_Scripts\Frogger\characterMonitor.cs" />
+     <Compile Include="Assets\_Scripts\Frogger\frutaBehaviour.cs" />
+     <Compile Include="Assets\_Scripts\Frogger\gameControllerFrog.cs" />
+     <Compile Include="Assets\_Scripts\Frogger\movePedra.cs" />
+     <Compile Include="Assets\_Scripts\Frogger\stoneWatchr.cs" />
      <Compile Include="Assets\_Scripts\GestureRecognizer\GestureRecognizer.cs" />
      <Compile Include="Assets\_Scripts\GiraMilho\CollisionDetection.cs" />
      <Compile Include="Assets\_Scripts\GiraMilho\GameController.cs" />
