@@ -2,8 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\Frogger\characterMonitor.cs">
     <Files>
-      <File FileName="Assets\_Scripts\Frogger\characterMonitor.cs" Line="25" Column="51" />
+      <File FileName="Assets\_Scripts\Frogger\characterMonitor.cs" Line="46" Column="58" />
       <File FileName="Assets\_Scripts\GestureRecognizer\GestureRecognizer.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Frogger\gameControllerFrog.cs" Line="35" Column="25" />
+      <File FileName="Assets\_Scripts\GiraMilho\CollisionDetection.cs" Line="21" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -8,6 +8,8 @@ public class gameControllerFrog : MonoBehaviour {
 	public Transform[] frutas;
 	public Transform pedra1;
 	private float startTime;
+	public static int remainingFruits;
+	public static bool carryingFruit;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +30,9 @@ public class gameControllerFrog : MonoBehaviour {
 		goalPositions[3] = new Vector3(162.1f,1.19f,419.26f);
 		goalPositions[4] = new Vector3(172.1f,1.19f,419.26f);
 		goalPositions[5] = new Vector3(182.7f,1.19f,419.26f);
+
+		remainingFruits = 6;
+		carryingFruit = false;
 
 		int fPos;
 

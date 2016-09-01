@@ -24,5 +24,27 @@ public class characterMonitor : MonoBehaviour {
 
 		controller.Move(moveDirection * Time.deltaTime);
 
+		if(gameControllerFrog.carryingFruit){
+			if(transform.position.z < 402){
+				gameControllerFrog.carryingFruit = false;
+				Debug.Log("Cheguei do outro lado!");
+			}
+		}
+
+
 	}
+
+	void OnTriggerEnter(Collider other){
+
+		if(other.tag == "Fruta" && (!gameControllerFrog.carryingFruit)){
+			gameControllerFrog.carryingFruit = true;
+			gameControllerFrog.remainingFruits--;
+			Destroy(other.gameObject);
+		}
+
+
+		if(other.tag == "Pedra") Debug.Log("Colidiu com pedra");
+
+	}
+
 }
