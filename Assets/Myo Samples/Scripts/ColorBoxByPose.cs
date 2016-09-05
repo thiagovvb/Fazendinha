@@ -30,14 +30,14 @@ public class ColorBoxByPose : MonoBehaviour
         // Access the ThalmicMyo component attached to the Myo game object.
         ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
 
-		print(" 0 = " + thalmicMyo.emg[0] + 
+		/*print(" 0 = " + thalmicMyo.emg[0] + 
 			" 1 = " + thalmicMyo.emg[1] + 
 			" 2 = " + thalmicMyo.emg[2] + 
 			" 3 = " + thalmicMyo.emg[3] + 
 			" 4 = " + thalmicMyo.emg[4] + 
 			" 5 = " + thalmicMyo.emg[5] + 
 			" 6 = " + thalmicMyo.emg[6] + 
-			" 7 = " + thalmicMyo.emg[7] );
+			" 7 = " + thalmicMyo.emg[7] );*/
 
         // Check if the pose has changed since last update.
         // The ThalmicMyo component of a Myo game object has a pose property that is set to the

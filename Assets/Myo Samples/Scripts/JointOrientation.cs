@@ -59,7 +59,9 @@ public class JointOrientation : MonoBehaviour
             _antiYaw = Quaternion.FromToRotation (
                 new Vector3 (myo.transform.forward.x, 0, myo.transform.forward.z),
                 new Vector3 (0, 0, 1)
+
             );
+
 
             // _referenceRoll represents how many degrees the Myo armband is rotated clockwise
             // about its forward axis (when looking down the wearer's arm towards their hand) from the reference zero
@@ -77,6 +79,8 @@ public class JointOrientation : MonoBehaviour
         // The relative roll is simply how much the current roll has changed relative to the reference roll.
         // adjustAngle simply keeps the resultant value within -180 to 180 degrees.
         float relativeRoll = normalizeAngle (roll - _referenceRoll);
+
+		Debug.Log("Roll = " + roll + " reference roll = " + _referenceRoll +  " Relative roll = " + relativeRoll);
 
         // antiRoll represents a rotation about the myo Armband's forward axis adjusting for reference roll.
         Quaternion antiRoll = Quaternion.AngleAxis (relativeRoll, myo.transform.forward);

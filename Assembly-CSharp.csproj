@@ -78,7 +78,9 @@
      <Compile Include="Assets\_Scripts\Ovomania\eggWatcher.cs" />
      <Compile Include="Assets\_Scripts\Ovomania\gameController.cs" />
      <Compile Include="Assets\_Scripts\Ovomania\moveOvo.cs" />
+     <Compile Include="Assets\_Scripts\RotTest.cs" />
      <Compile Include="Assets\_Scripts\Vaquinha\GameController_Vaq.cs" />
+     <None Include="Assets\laxer tree pkg\README.txt" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Textures\Textures.txt" />
      <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
