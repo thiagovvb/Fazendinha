@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour {
 	void Start () {
 
 		state = 0; //Play
-		speed = 4.0f;
+		speed = 2.0f;
 
 	}
 	
