@@ -40,7 +40,7 @@ public class moveCursor : MonoBehaviour {
 			Debug.Log("Direita");
 
 			++pos;
-			if(pos > 4) --pos;
+			if(pos >= 4) --pos;
 
 			transform.position = new Vector3(positions[pos], transform.position.y, transform.position.z);
 
@@ -58,6 +58,8 @@ public class moveCursor : MonoBehaviour {
 
 			posSet = false;
 		}
+
+		globalVariables.activeBox = pos;
 
 	}
 

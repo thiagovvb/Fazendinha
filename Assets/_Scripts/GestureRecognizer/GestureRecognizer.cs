@@ -12,72 +12,27 @@ public class GestureRecognizer : MonoBehaviour {
 
 	public GameObject myo = null;
 	public System.IO.StreamWriter file;
-	public bool write;
-	private bool writing;
 	private Classifier c;
-	private Classifier gesturec;
-	//private int j;
 	private List<double[]> emgData;
 	private int currentGesture;
 
 	private float startTime;
 	private bool isTime;
 
+	public string databaseName;
+
 	// Use this for initialization
 	void Start () {
 
 		emgData = new List<double[]>();
-		writing = false;
 		isTime = false;
 
-		//j = 0;
-		/*file = new System.IO.StreamWriter("bancoMovimento.csv");
-		write = true;*/
-
-		//Dataset d1 = new Dataset("bancoFinal.csv");
-		//Dataset d2 = new Dataset("treinamento_programa.csv");
-		//Dataset d2 = new Dataset("bancoFinal.csv");
-		Dataset d3 = new Dataset("cjnovo_dados2.csv");
-
-		Dataset d1 = new Dataset("cjnovo_dados2.csv");
-		Dataset d2 = new Dataset("cjnovo_dados2.csv");
-
-		c = new Classifier(d1);
-		//gesturec = new Classifier(d3);
-
-		//gesturec.openDataset();
-		//gesturec.setupNetwork(16, new int[2]{10,5});
-		//gesturec.trainBackprop(1000,0.3,0.2);
+		Dataset d = new Dataset("cjnovo_dados2.csv");
+		c = new Classifier(d);
 
 		c.openDataset();
 		c.setupNetwork(16, new int[2]{10,5});
 		c.trainBackprop(1000,0.25,0.2);
-
-		d2.openAndLoad();
-
-		double[] sample = c.computDataset(d2);
-		int correct = 0;
-
-		for(int i = 0; i < sample.Length; i++){
-
-			if(sample[i] == d2.getValueClass(i)) correct++;
-			Debug.Log(sample[i] + " " + d2.getValueClass(i));
-
-		}
-
-		/*double[] sample2 = new double[16]{-38,36,-19,12,-9,15,-5,6,-5,2,-5,2,-6,4,-38,23};
-
-		double[] samplenorm = normalizeData(c,sample2);
-
-		Debug.Log(c.convertToNumerical(c.compute(samplenorm)));*/
-
-		//for(int i = 0; i < 16; i++){
-		//	Debug.Log("i = " + i + " " + samplenorm[i]);
-		//}
-
-		Debug.Log("NLines = " + d2.getNLines());
-
-		Debug.Log("Taxa de acerto = " + ((float)correct)/d2.getNLines());
 
 	}
 
@@ -163,8 +118,7 @@ public class GestureRecognizer : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-		ThalmicHub hub = ThalmicHub.instance;
+		
 		ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
 		float time;
 
@@ -172,7 +126,7 @@ public class GestureRecognizer : MonoBehaviour {
 		double[] emgDouble = new double[emg.Length];
 
 		for(int i = 0; i < emg.Length; i++){
-			emgDouble[i] = emg[i];
+			emgDouble[i] = Convert.ToDouble(emg[i]);
 		}
 			
 		if(!isTime){
@@ -183,9 +137,10 @@ public class GestureRecognizer : MonoBehaviour {
 
 			if(time - startTime > 1){
 				isTime = false;
-				int gesture = classifyGesture(getMaxAndMin(emgData));
+				currentGesture = classifyGesture(getMaxAndMin(emgData));
+				globalVariables.currentGesture = currentGesture;
+				Debug.Log("Gesture: " + currentGesture);
 				emgData.Clear();
-				Debug.Log("Gesture: " + gesture);
 			}else{
 				emgData.Add(emgDouble);
 			}
@@ -193,86 +148,7 @@ public class GestureRecognizer : MonoBehaviour {
 
 		}
 
-
-		/*ThalmicHub hub = ThalmicHub.instance;
-		ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
-
-		int[] emg = thalmicMyo.emg;
-		double[] emgDouble = new double[emg.Length];
-
-		for(int i = 0; i < emg.Length; i++){
-			emgDouble[i] = emg[i];
-		}
-
-		UpdateListBef(emgDouble);
-
-		double[] res = c.compute(emgDouble);
-		//int classf = Mathf.RoundToInt((float)res[0]);
-		int classf = 0;
-		double[,] matRes;
-
-		if(Input.GetKeyDown("space")) classf = 1;
-
-		if(writing == false){
-			if(classf == 0){
-				//Debug.Log("False && 0");
-				UpdateListBef(emgDouble);
-			}else if(classf == 1){
-				//Debug.Log("False && 1");
-				writing = true;
-			}
-		}else{
-			if(emgAft.Count < 300){
-				Debug.Log("Count " + emgAft.Count);
-				emgAft.Add(emgDouble);
-			}else{
-				Debug.Log("Finised counting");
-				writing = false;
-				matRes = getMaxAndMin(emgAft,emgBef);
-
-				string line1 = matRes[0,0] + "," + matRes[1,0] + "," + matRes[2,0] + "," + matRes[3,0] + "," + matRes[4,0] + "," + matRes[5,0] + "," + matRes[6,0] + "," + matRes[7,0];
-				string line2 = matRes[0,1] + "," + matRes[1,1] + "," + matRes[2,1] + "," + matRes[3,1] + "," + matRes[4,1] + "," + matRes[5,1] + "," + matRes[6,1] + "," + matRes[7,1];
-
-				Debug.Log("Min: " + line1);
-				Debug.Log("Max: " + line2);
-
-				Debug.Log("Classified as: " + classifyGesture(matRes));
-
-
-			}
-		}
-
-
-
-		/*int classf = Mathf.RoundToInt((float)res[0]);
-
-		string time = DateTime.UtcNow.ToString("HH:mm:ss.fffffff");
-
-		if(classf == 1){
-			Debug.Log("Movimento " + time);
-		}*/
-		/*ThalmicHub hub = ThalmicHub.instance;
-		ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
-
-		int[] emg = thalmicMyo.emg;
-
-		Debug.Log("emg size = " + emg.Length);
-
-		if(write){
-
-			string line = emg[0] + "," + emg[1] + "," + emg[2] + "," + emg[3] + "," + emg[4] + "," + emg[5] + "," + emg[6] + "," + emg[7] + "," + "1";
-			file.WriteLine(line);
-
-		}
-
-		if(Input.GetKeyDown("space") && write){
-			write = false;
-			file.Close();
-		}*/
-
-		//print(" emg [1] = " + (int)emg[0] + " emg [2] = " + (int)emg[1] + " emg [3] = " + (int)emg[2] + " emg [4] = " + (int)emg[3] +
-		//	  " emg [5] = " + (int)emg[4] + " emg [6] = " + (int)emg[5] + " emg [7] = " + (int)emg[6] + " emg [8] = " + (int)emg[7]);
-
+	
 	}
 
 

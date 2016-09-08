@@ -72,12 +72,14 @@
      <Compile Include="Assets\_Scripts\Frogger\movePedra.cs" />
      <Compile Include="Assets\_Scripts\Frogger\stoneWatchr.cs" />
      <Compile Include="Assets\_Scripts\GestureRecognizer\GestureRecognizer.cs" />
+     <Compile Include="Assets\_Scripts\GestureRecognizer\GestureRecognizer2.cs" />
      <Compile Include="Assets\_Scripts\GiraMilho\CollisionDetection.cs" />
      <Compile Include="Assets\_Scripts\GiraMilho\CornSpin.cs" />
      <Compile Include="Assets\_Scripts\GiraMilho\GameController.cs" />
      <Compile Include="Assets\_Scripts\MyoRawData.cs" />
      <Compile Include="Assets\_Scripts\Ovomania\eggWatcher.cs" />
      <Compile Include="Assets\_Scripts\Ovomania\gameController.cs" />
+     <Compile Include="Assets\_Scripts\Ovomania\globalVariables.cs" />
      <Compile Include="Assets\_Scripts\Ovomania\moveCursor.cs" />
      <Compile Include="Assets\_Scripts\Ovomania\moveOvo.cs" />
      <Compile Include="Assets\_Scripts\RotTest.cs" />

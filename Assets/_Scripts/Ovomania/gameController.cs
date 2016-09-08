@@ -11,11 +11,13 @@ public class gameController : MonoBehaviour {
 	private float startTime;
 	public GameObject[] tampas;
 	private bool[] tampaFechada;
+	private int lastGesture;
 
 	// Use this for initialization
 	void Start () {
 		
 		defaultQuaternion = Quaternion.Euler(new Vector3(90,-90,0));
+		lastGesture = 0;
 
 		tampaFechada = new bool[4];
 		for(int i = 0; i < 4; i++) tampaFechada[i] = true;
@@ -58,8 +60,24 @@ public class gameController : MonoBehaviour {
 			startTime = Time.time;
 		}
 
+		int cGesture = globalVariables.currentGesture;
+		int cBox = globalVariables.activeBox;
 
-		if(Input.GetKeyDown("1")){
+		if(lastGesture != cGesture){
+			if(cGesture == 2){
+				if(tampaFechada[cBox]){
+					tampaFechada[cBox] = false;
+					tampas[cBox].transform.Translate(new Vector3(0,0,2), Space.World);
+				}else{
+					tampas[cBox].transform.Translate(new Vector3(0,0,-2), Space.World);
+					tampaFechada[cBox] = true;
+				}
+			}
+			lastGesture = cGesture;
+		}
+
+
+		/*if(Input.GetKeyDown("1")){
 			if(tampaFechada[0]){
 				tampas[0].transform.Translate(new Vector3(0,0,2), Space.World);
 				tampaFechada[0] = false;
@@ -91,7 +109,7 @@ public class gameController : MonoBehaviour {
 				tampas[3].transform.Translate(new Vector3(0,0,-2), Space.World);
 				tampaFechada[3] = true;
 			}
-		}
+		}*/
 
 
 	}
