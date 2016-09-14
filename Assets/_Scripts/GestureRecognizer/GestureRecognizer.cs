@@ -15,7 +15,6 @@ public class GestureRecognizer : MonoBehaviour {
 	private Classifier c;
 	private List<double[]> emgData;
 	private int currentGesture;
-
 	private float startTime;
 	private bool isTime;
 
@@ -24,15 +23,18 @@ public class GestureRecognizer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		c = globalVariables.classifer;
 		emgData = new List<double[]>();
 		isTime = false;
 
-		Dataset d = new Dataset("cjnovo_dados2.csv");
+		Dataset d = new Dataset("banco_completo5.csv");
 		c = new Classifier(d);
 
 		c.openDataset();
-		c.setupNetwork(16, new int[2]{10,5});
-		c.trainBackprop(1000,0.25,0.2);
+		c.setupNetwork(16, new int[2]{11,6});
+		c.trainBackprop(1000,0.3,0.2);
+
+		DontDestroyOnLoad(this);
 
 	}
 
@@ -135,7 +137,7 @@ public class GestureRecognizer : MonoBehaviour {
 		}else{
 			time = Time.time;
 
-			if(time - startTime > 1){
+			if(time - startTime > 0.5){
 				isTime = false;
 				currentGesture = classifyGesture(getMaxAndMin(emgData));
 				globalVariables.currentGesture = currentGesture;

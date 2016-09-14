@@ -10,12 +10,15 @@ public class gameControllerFrog : MonoBehaviour {
 	private float startTime;
 	public static int remainingFruits;
 	public static bool carryingFruit;
+	public Transform player;
+	private int lastGesture;
 
 	// Use this for initialization
 	void Start () {
 	
 		positions = new Vector3[4];
 		goalPositions = new Vector3[6];
+		lastGesture = 0;
 
 		startTime = Time.time;
 
@@ -24,12 +27,12 @@ public class gameControllerFrog : MonoBehaviour {
 		positions[2] = new Vector3(129.61f, 1.383f, 411.5f);
 		positions[3] = new Vector3(129.61f, 1.383f, 415.8f);
 
-		goalPositions[0] = new Vector3(134.2f,1.19f,419.26f);
-		goalPositions[1] = new Vector3(142.3f,1.19f,419.26f);
-		goalPositions[2] = new Vector3(152.1f,1.19f,419.26f);
-		goalPositions[3] = new Vector3(162.1f,1.19f,419.26f);
-		goalPositions[4] = new Vector3(172.1f,1.19f,419.26f);
-		goalPositions[5] = new Vector3(182.7f,1.19f,419.26f);
+		goalPositions[0] = new Vector3(160f,1.63f,419.66f);
+		goalPositions[1] = new Vector3(170f,1.19f,419.26f);
+		goalPositions[2] = new Vector3(180f,1.19f,419.26f);
+		goalPositions[3] = new Vector3(150f,1.19f,419.26f);
+		goalPositions[4] = new Vector3(140f,1.19f,419.26f);
+		goalPositions[5] = new Vector3(130f,1.19f,419.26f);
 
 		remainingFruits = 6;
 		carryingFruit = false;
@@ -50,6 +53,8 @@ public class gameControllerFrog : MonoBehaviour {
 		int num;
 		int pos;
 
+		movementManager();
+
 		if(Time.time - startTime > 1){
 
 			num = Random.Range(0,50);
@@ -63,8 +68,25 @@ public class gameControllerFrog : MonoBehaviour {
 		}
 
 	}
+		
+	void movementManager(){
 
-	void prizeSetup(){
+		int cGesture = globalVariables.currentGesture;
+
+		if(lastGesture != cGesture){
+
+			if(cGesture == 1){
+				player.transform.Translate(0f,0f,5f);
+			}else if(cGesture == 2){
+				player.transform.Translate(0f,0f,-5f);
+			}else if(cGesture == 3){
+				player.transform.Translate(10f,0f,0f);
+			}else if(cGesture == 4){
+				player.transform.Translate(-10f,0f,0f);
+			}
+			lastGesture = cGesture;
+
+		}
 
 	}
 
