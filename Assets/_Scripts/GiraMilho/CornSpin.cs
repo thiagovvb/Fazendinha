@@ -9,6 +9,7 @@ public class CornSpin : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
+		myo = GameObject.Find("Myo");
 		startAngle = myo.transform.localRotation.eulerAngles.z;
 
 	}
@@ -16,7 +17,7 @@ public class CornSpin : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
+		//ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
 		Quaternion q = Quaternion.Euler(2*myo.transform.localRotation.eulerAngles.z - startAngle,90,90);
 		transform.localRotation = q;
 

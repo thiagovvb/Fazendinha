@@ -14,6 +14,7 @@ public class moveCursor : MonoBehaviour {
 
 	void Start(){
 
+		myo = GameObject.Find("Myo");
 		startPos = transform.position.x;
 		posSet = false;
 		positions = new float[4];
@@ -27,7 +28,7 @@ public class moveCursor : MonoBehaviour {
 
 	void Update () {
 
-		ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
+		//ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
 
 		if(!posSet){
 			myoStartPos = myo.transform.localRotation.eulerAngles.y;
