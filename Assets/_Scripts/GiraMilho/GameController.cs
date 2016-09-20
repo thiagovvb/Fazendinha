@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GameController : MonoBehaviour {
@@ -9,10 +10,62 @@ public class GameController : MonoBehaviour {
 	public GameObject milho;
 	public GameObject molde;
 
+	private int qtdMilho;
+	private int qtdMilhosPerdidos;
+
 	void Start () {
 
-		state = 0; //Play
+		state = 4; //Show GUI
 		speed = 2.0f;
+		qtdMilho = 0;
+		qtdMilhosPerdidos = 0;
+
+	}
+
+	void OnGUI(){
+
+		int boxWidth = 400;
+		int boxHeight = 200;
+
+		if(state == 4){
+			GUI.Box(new Rect(Screen.width/2 - boxWidth/2, Screen.height/2 - boxHeight/2, boxWidth, boxHeight), "Dicas");
+
+			GUI.Label(new Rect(Screen.width/2 - (boxWidth/2 - 20), Screen.height/2 - (boxHeight/2 - 20), 360, 100), "" +
+				"Neste jogo você deve passar o milho pelo molde, a cada milho atravessado com sucesso, sua pontuação aumentará e você coletará mais milhos! Quando estiver pronto para continuar pressione o botão continuar utilizando o mouse.");
+
+			if(GUI.Button(new Rect(Screen.width/2 - 100, Screen.height/2 + 25, 75, 25), "Continuar")){
+			
+				state = 0;
+
+			}
+
+			if(GUI.Button(new Rect(Screen.width/2 + 25, Screen.height/2 + 25, 75, 25), "Voltar")){
+
+				SceneManager.LoadScene("MainMenu");
+
+			}
+
+		}
+
+		if(state != 4){
+
+			GUI.Box(new Rect(0,0,300,50), "Pontuação");
+
+			GUI.Label(new Rect(10,25,300,50), "Milhos coletados: " + qtdMilho + "\tMilhos Perdidos: " + qtdMilhosPerdidos);
+
+			if(GUI.Button(new Rect(Screen.width - 75, Screen.height - 25, 75, 25), "Voltar")){
+
+				SceneManager.LoadScene("MainMenu");
+
+			}
+
+			if(GUI.Button(new Rect(Screen.width - 75, 0, 75, 25), "Objetivos")){
+
+				Debug.Log("NÃO TEM NADA AQUI AINDA");
+
+			}
+
+		}
 
 	}
 	
@@ -60,15 +113,18 @@ public class GameController : MonoBehaviour {
 
 		}else if(state == 2){
 
-			Debug.Log("Você perdeu!");
+			speed -= 0.05f;
+			qtdMilhosPerdidos++;
 
 			CollisionDetection cd = milho.GetComponentInChildren<CollisionDetection>();
 			cd.collision = false;
 			state = 1;
 
 		}else if(state == 3){
-			
+
+			speed += 0.05f;
 			Debug.Log("Você ganhou!");
+			qtdMilho++;
 
 			state = 1;
 

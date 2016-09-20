@@ -114,6 +114,9 @@ public class GestureRecognizer : MonoBehaviour {
 
 		}
 
+		Debug.Log("MinValue: " + matMinMax[0,0] + " , " + matMinMax[1,0] + " , " + matMinMax[2,0] + " , " + matMinMax[3,0] + " , " + matMinMax[4,0] + " , " + matMinMax[5,0] + " , " + matMinMax[6,0] + " , " + matMinMax[7,0]);
+		Debug.Log("MaxValue: " + matMinMax[0,1] + " , " + matMinMax[1,1] + " , " + matMinMax[2,1] + " , " + matMinMax[3,1] + " , " + matMinMax[4,1] + " , " + matMinMax[5,1] + " , " + matMinMax[6,1] + " , " + matMinMax[7,1]);
+
 		return matMinMax;
 
 	}
