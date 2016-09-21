@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour {
 
 	}
 
-	void OnGUI(){
+	/*void OnGUI(){
 
 		int boxWidth = 400;
 		int boxHeight = 200;
@@ -67,7 +67,7 @@ public class GameController : MonoBehaviour {
 
 		}
 
-	}
+	}*/
 	
 	// Update is called once per frame
 	void Update () {
@@ -125,6 +125,7 @@ public class GameController : MonoBehaviour {
 			speed += 0.05f;
 			Debug.Log("Você ganhou!");
 			qtdMilho++;
+			globalVariables.qtdMilho++;
 
 			state = 1;
 
