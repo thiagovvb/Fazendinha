@@ -6,8 +6,11 @@ public class globalVariables : MonoBehaviour {
 	public static int activeBox; // Active box selected 
 	public static int currentGesture; //Gesu
 	public static Classifier classifer;
+
 	public static int qtdMilho;
 	public static int qtdOvos;
+	public static int qtdOvosBrancos_Local;
+	public static int qtdOvosPodres_Local;
 	public static int qtdFrutas;
 
 	public static int frutasQuota;
@@ -28,6 +31,8 @@ public class globalVariables : MonoBehaviour {
 		frutasQuota = 0;
 		milhosQuota = 0;
 		ovosQuota = 0;
+		qtdOvosBrancos_Local = 0;
+		qtdOvosPodres_Local = 0;
 	}
 	
 	// Update is called once per frame

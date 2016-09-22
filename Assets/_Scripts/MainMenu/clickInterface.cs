@@ -8,6 +8,7 @@ public class clickInterface : MonoBehaviour {
 	public GameObject[] setas;
 	public Camera camera;
 	public int state = 0;
+	public static bool started = false;
 	public Text placarMilho;
 	public Text placarOvos;
 	public Text placarFrutas;
@@ -16,6 +17,7 @@ public class clickInterface : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		setas[0].SetActive(false);
 		setas[1].SetActive(false);
 		setas[2].SetActive(false);
@@ -24,7 +26,13 @@ public class clickInterface : MonoBehaviour {
 		placarFrutas.text = (globalVariables.qtdFrutas + " / " + globalVariables.frutasQuota);
 		placarOvos.text = (globalVariables.qtdOvos + " / " + globalVariables.ovosQuota);
 
-		gameplayMenu.enabled = false;
+		if(!started){
+			gameplayMenu.enabled = false;
+			started = true;
+		}else{
+			mainMenu.enabled = false;
+			state = 1;
+		}
 
 	}
 

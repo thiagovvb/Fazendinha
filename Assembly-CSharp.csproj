@@ -86,6 +86,7 @@
      <Compile Include="Assets\_Scripts\Ovomania\moveCursor.cs" />
      <Compile Include="Assets\_Scripts\Ovomania\moveOvo.cs" />
      <Compile Include="Assets\_Scripts\RotTest.cs" />
+     <Compile Include="Assets\_Scripts\UniqueMyo.cs" />
      <Compile Include="Assets\_Scripts\Vaquinha\GameController_Vaq.cs" />
      <Compile Include="Assets\_Scripts\globalVariables.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />

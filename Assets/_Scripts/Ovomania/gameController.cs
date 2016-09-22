@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class gameController : MonoBehaviour {
 
 	public Transform ovoBranco;
 	public Transform ovoPodre;
 	public Transform ovoEspecial;
+	public Text ovosBrancos;
+	public Text ovosPodres;
 	private Vector3[] positions;
 	private Quaternion defaultQuaternion;
 	private float startTime;
@@ -50,11 +54,6 @@ public class gameController : MonoBehaviour {
 					Debug.Log("Numero gerado = " + num + " PODRE");
 					Instantiate(ovoPodre,positions[i],defaultQuaternion);
 				}
-
-				if(num == 0){
-					Debug.Log("Numero gerado = " + num + " ESPECIAL");
-					Instantiate(ovoEspecial,positions[i],defaultQuaternion);
-				}
 				
 			}
 			startTime = Time.time;
@@ -76,6 +75,8 @@ public class gameController : MonoBehaviour {
 			lastGesture = cGesture;
 		}
 
+		ovosBrancos.text = ": " + globalVariables.qtdOvosBrancos_Local;
+		ovosPodres.text = ": " + globalVariables.qtdOvosPodres_Local;
 
 		/*if(Input.GetKeyDown("1")){
 			if(tampaFechada[0]){
@@ -113,4 +114,10 @@ public class gameController : MonoBehaviour {
 
 
 	}
+
+	public void voltarBtn(){
+		Debug.Log("NHEGURE");
+		SceneManager.LoadScene("MainMenu");
+	}
+
 }

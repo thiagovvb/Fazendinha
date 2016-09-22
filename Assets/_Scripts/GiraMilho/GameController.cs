@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
@@ -9,6 +10,9 @@ public class GameController : MonoBehaviour {
 	private float speed;
 	public GameObject milho;
 	public GameObject molde;
+	public Text milhoPlacar;
+	public Text milhoPerdidoPlacar;
+	public Canvas tipCanvas;
 
 	private int qtdMilho;
 	private int qtdMilhosPerdidos;
@@ -22,53 +26,17 @@ public class GameController : MonoBehaviour {
 
 	}
 
-	/*void OnGUI(){
+	public void continueBtn(){
 
-		int boxWidth = 400;
-		int boxHeight = 200;
+		state = 0;
+		tipCanvas.enabled = false;
 
-		if(state == 4){
-			GUI.Box(new Rect(Screen.width/2 - boxWidth/2, Screen.height/2 - boxHeight/2, boxWidth, boxHeight), "Dicas");
+	}
 
-			GUI.Label(new Rect(Screen.width/2 - (boxWidth/2 - 20), Screen.height/2 - (boxHeight/2 - 20), 360, 100), "" +
-				"Neste jogo você deve passar o milho pelo molde, a cada milho atravessado com sucesso, sua pontuação aumentará e você coletará mais milhos! Quando estiver pronto para continuar pressione o botão continuar utilizando o mouse.");
+	public void voltarBtn(){
+		SceneManager.LoadScene("MainMenu");
+	}
 
-			if(GUI.Button(new Rect(Screen.width/2 - 100, Screen.height/2 + 25, 75, 25), "Continuar")){
-			
-				state = 0;
-
-			}
-
-			if(GUI.Button(new Rect(Screen.width/2 + 25, Screen.height/2 + 25, 75, 25), "Voltar")){
-
-				SceneManager.LoadScene("MainMenu");
-
-			}
-
-		}
-
-		if(state != 4){
-
-			GUI.Box(new Rect(0,0,300,50), "Pontuação");
-
-			GUI.Label(new Rect(10,25,300,50), "Milhos coletados: " + qtdMilho + "\tMilhos Perdidos: " + qtdMilhosPerdidos);
-
-			if(GUI.Button(new Rect(Screen.width - 75, Screen.height - 25, 75, 25), "Voltar")){
-
-				SceneManager.LoadScene("MainMenu");
-
-			}
-
-			if(GUI.Button(new Rect(Screen.width - 75, 0, 75, 25), "Objetivos")){
-
-				Debug.Log("NÃO TEM NADA AQUI AINDA");
-
-			}
-
-		}
-
-	}*/
-	
 	// Update is called once per frame
 	void Update () {
 
@@ -115,6 +83,7 @@ public class GameController : MonoBehaviour {
 
 			speed -= 0.05f;
 			qtdMilhosPerdidos++;
+			milhoPerdidoPlacar.text = ": " + qtdMilhosPerdidos;
 
 			CollisionDetection cd = milho.GetComponentInChildren<CollisionDetection>();
 			cd.collision = false;
@@ -125,6 +94,7 @@ public class GameController : MonoBehaviour {
 			speed += 0.05f;
 			Debug.Log("Você ganhou!");
 			qtdMilho++;
+			milhoPlacar.text = ": " + qtdMilho;
 			globalVariables.qtdMilho++;
 
 			state = 1;
