@@ -9,6 +9,7 @@ public class globalVariables : MonoBehaviour {
 
 	public static int qtdMilho;
 	public static int qtdOvos;
+	public static int qtdFrutas_Local;
 	public static int qtdOvosBrancos_Local;
 	public static int qtdOvosPodres_Local;
 	public static int qtdFrutas;

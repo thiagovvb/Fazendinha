@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ public class GestureRecognizer : MonoBehaviour {
 		c.trainBackprop(1000,0.3,0.2);
 
 		DontDestroyOnLoad(this);
+		SceneManager.LoadScene("MainMenu");
 
 	}
 

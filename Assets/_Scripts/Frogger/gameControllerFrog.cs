@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class gameControllerFrog : MonoBehaviour {
@@ -12,6 +14,9 @@ public class gameControllerFrog : MonoBehaviour {
 	public static bool carryingFruit;
 	public Transform player;
 	private int lastGesture;
+	public Text placar;
+
+	private int tempoRespawn;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +24,7 @@ public class gameControllerFrog : MonoBehaviour {
 		positions = new Vector3[4];
 		goalPositions = new Vector3[6];
 		lastGesture = 0;
+		globalVariables.qtdFrutas_Local = 0;
 
 		startTime = Time.time;
 
@@ -55,6 +61,8 @@ public class gameControllerFrog : MonoBehaviour {
 
 		movementManager();
 
+		placar.text = ": " + globalVariables.qtdFrutas_Local;
+
 		if(Time.time - startTime > 1){
 
 			num = Random.Range(0,50);
@@ -67,6 +75,12 @@ public class gameControllerFrog : MonoBehaviour {
 			startTime = Time.time;
 		}
 
+		if(remainingFruits == 0){
+			for(int i = 0; i < 6; i++){
+				Instantiate(frutas[Random.Range(0,3)],goalPositions[i], Quaternion.identity);
+			}
+		}
+
 	}
 		
 	void movementManager(){
@@ -76,18 +90,24 @@ public class gameControllerFrog : MonoBehaviour {
 		if(lastGesture != cGesture){
 
 			if(cGesture == 1){
-				player.transform.Translate(0f,0f,5f);
+				if(player.transform.position.z <= 416.0f) player.transform.Translate(0f,0f,4.1f);
 			}else if(cGesture == 2){
-				player.transform.Translate(0f,0f,-5f);
+				if(player.transform.position.z >= 403.4f) player.transform.Translate(0f,0f,-4.1f);
 			}else if(cGesture == 3){
-				player.transform.Translate(10f,0f,0f);
-			}else if(cGesture == 4){
 				player.transform.Translate(-10f,0f,0f);
+			}else if(cGesture == 4){
+				player.transform.Translate(10f,0f,0f);
 			}
 			lastGesture = cGesture;
 
 		}
 
 	}
+
+	public void voltarBtn(){
+		Debug.Log("NHEGURE");
+		SceneManager.LoadScene("MainMenu");
+	}
+		
 
 }

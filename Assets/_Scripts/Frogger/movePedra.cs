@@ -15,7 +15,7 @@ public class movePedra : MonoBehaviour {
 
 		//if (transform.position.z < 0.3) {
 
-		transform.RotateAround(transform.position,new Vector3(0,0,1), -Time.deltaTime * 90);
+		transform.RotateAround(transform.position,new Vector3(0,0,1), -Time.deltaTime * 60);
 		transform.Translate(new Vector3(4*Time.deltaTime,0,0), Space.World);
 		//}else if(!r.useGravity){
 		//	r.useGravity = true;
