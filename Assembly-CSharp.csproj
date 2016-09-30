@@ -89,6 +89,7 @@
      <Compile Include="Assets\_Scripts\UniqueMyo.cs" />
      <Compile Include="Assets\_Scripts\Vaquinha\GameController_Vaq.cs" />
      <Compile Include="Assets\_Scripts\globalVariables.cs" />
+     <Compile Include="Assets\helpCanvasManager.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

@@ -16,10 +16,14 @@ public class gameController : MonoBehaviour {
 	public GameObject[] tampas;
 	private bool[] tampaFechada;
 	private int lastGesture;
+	private int state;
+	public Canvas helpCanvas;
 
 	// Use this for initialization
 	void Start () {
-		
+
+		state = 0;
+
 		defaultQuaternion = Quaternion.Euler(new Vector3(90,-90,0));
 		lastGesture = 0;
 
@@ -39,44 +43,46 @@ public class gameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		int num;
-		if(Time.time - startTime > 1){
-			for(int i = 0; i < 4; i++){
+		if(state == 1){
+			int num;
+			if(Time.time - startTime > 1){
+				for(int i = 0; i < 4; i++){
 
-				num = Random.Range(0,150);
+					num = Random.Range(0,150);
 
-				if(num >= 80 && num <= 90){
-					Debug.Log("Numero gerado = " + num + " BRANCO");
-					Instantiate(ovoBranco,positions[i],defaultQuaternion);
+					if(num >= 80 && num <= 90){
+						Debug.Log("Numero gerado = " + num + " BRANCO");
+						Instantiate(ovoBranco,positions[i],defaultQuaternion);
+					}
+
+					if(num >= 50 && num <= 55){
+						Debug.Log("Numero gerado = " + num + " PODRE");
+						Instantiate(ovoPodre,positions[i],defaultQuaternion);
+					}
+					
 				}
-
-				if(num >= 50 && num <= 55){
-					Debug.Log("Numero gerado = " + num + " PODRE");
-					Instantiate(ovoPodre,positions[i],defaultQuaternion);
-				}
-				
+				startTime = Time.time;
 			}
-			startTime = Time.time;
-		}
 
-		int cGesture = globalVariables.currentGesture;
-		int cBox = globalVariables.activeBox;
+			int cGesture = globalVariables.currentGesture;
+			int cBox = globalVariables.activeBox;
 
-		if(lastGesture != cGesture){
-			if(cGesture == 2){
-				if(tampaFechada[cBox]){
-					tampaFechada[cBox] = false;
-					tampas[cBox].transform.Translate(new Vector3(0,0,2), Space.World);
-				}else{
-					tampas[cBox].transform.Translate(new Vector3(0,0,-2), Space.World);
-					tampaFechada[cBox] = true;
+			if(lastGesture != cGesture){
+				if(cGesture == 2){
+					if(tampaFechada[cBox]){
+						tampaFechada[cBox] = false;
+						tampas[cBox].transform.Translate(new Vector3(0,0,2), Space.World);
+					}else{
+						tampas[cBox].transform.Translate(new Vector3(0,0,-2), Space.World);
+						tampaFechada[cBox] = true;
+					}
 				}
+				lastGesture = cGesture;
 			}
-			lastGesture = cGesture;
-		}
 
-		ovosBrancos.text = ": " + globalVariables.qtdOvosBrancos_Local;
-		ovosPodres.text = ": " + globalVariables.qtdOvosPodres_Local;
+			ovosBrancos.text = ": " + globalVariables.qtdOvosBrancos_Local;
+			ovosPodres.text = ": " + globalVariables.qtdOvosPodres_Local;
+		}
 
 		/*if(Input.GetKeyDown("1")){
 			if(tampaFechada[0]){
@@ -119,5 +125,9 @@ public class gameController : MonoBehaviour {
 		Debug.Log("NHEGURE");
 		SceneManager.LoadScene("MainMenu");
 	}
-
+		
+	public void btnContinua(){
+		helpCanvas.enabled = false;
+		state = 1;
+	}
 }

@@ -15,6 +15,8 @@ public class gameControllerFrog : MonoBehaviour {
 	public Transform player;
 	private int lastGesture;
 	public Text placar;
+	public Canvas helpCanvas;
+	private int state;
 
 	private int tempoRespawn;
 
@@ -25,6 +27,7 @@ public class gameControllerFrog : MonoBehaviour {
 		goalPositions = new Vector3[6];
 		lastGesture = 0;
 		globalVariables.qtdFrutas_Local = 0;
+		state = 0;
 
 		startTime = Time.time;
 
@@ -59,26 +62,30 @@ public class gameControllerFrog : MonoBehaviour {
 		int num;
 		int pos;
 
-		movementManager();
+		if(state == 1){
 
-		placar.text = ": " + globalVariables.qtdFrutas_Local;
+			movementManager();
 
-		if(Time.time - startTime > 1){
+			placar.text = ": " + globalVariables.qtdFrutas_Local;
 
-			num = Random.Range(0,50);
+			if(Time.time - startTime > 1){
 
-			if(num >= 0 && num <= 30){
-				pos = Random.Range(0,4);
-				Instantiate(pedra1,positions[pos], Quaternion.identity);
+				num = Random.Range(0,50);
+
+				if(num >= 0 && num <= 30){
+					pos = Random.Range(0,4);
+					Instantiate(pedra1,positions[pos], Quaternion.identity);
+				}
+						
+				startTime = Time.time;
 			}
-					
-			startTime = Time.time;
-		}
 
-		if(remainingFruits == 0){
-			for(int i = 0; i < 6; i++){
-				Instantiate(frutas[Random.Range(0,3)],goalPositions[i], Quaternion.identity);
+			if(remainingFruits == 0){
+				for(int i = 0; i < 6; i++){
+					Instantiate(frutas[Random.Range(0,3)],goalPositions[i], Quaternion.identity);
+				}
 			}
+
 		}
 
 	}
@@ -107,6 +114,11 @@ public class gameControllerFrog : MonoBehaviour {
 	public void voltarBtn(){
 		Debug.Log("NHEGURE");
 		SceneManager.LoadScene("MainMenu");
+	}
+
+	public void continuarBtn(){
+		helpCanvas.enabled = false;
+		state = 1;
 	}
 		
 

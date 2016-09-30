@@ -14,6 +14,7 @@ public class clickInterface : MonoBehaviour {
 	public Text placarFrutas;
 	public Canvas mainMenu;
 	public Canvas gameplayMenu;
+	public Canvas objetivosMenu;
 
 	// Use this for initialization
 	void Start () {
@@ -28,10 +29,12 @@ public class clickInterface : MonoBehaviour {
 
 		if(!started){
 			gameplayMenu.enabled = false;
+			objetivosMenu.enabled = false;
 			started = true;
 		}else{
 			mainMenu.enabled = false;
-			state = 1;
+			objetivosMenu.enabled = false;
+			state = 2;
 		}
 
 	}
@@ -40,12 +43,18 @@ public class clickInterface : MonoBehaviour {
 
 		if(input.Equals("Start")){
 			mainMenu.enabled = false;
-			gameplayMenu.enabled = true;
+			objetivosMenu.enabled = true;
 			state = 1;
 		}
 
 		if(input.Equals("Exit")){
 			Application.Quit();
+		}
+
+		if(input.Equals("Continue")){
+			objetivosMenu.enabled = false;
+			gameplayMenu.enabled = true;
+			state = 2;
 		}
 
 	}
@@ -89,7 +98,7 @@ public class clickInterface : MonoBehaviour {
 		RaycastHit hit = new RaycastHit();
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
-		if(state == 1){
+		if(state == 2){
 			if(SceneManager.GetActiveScene().name.Equals("MainMenu")){
 				if (Physics.Raycast (ray, out hit, 100.0f))
 				{  

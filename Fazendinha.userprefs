@@ -2,15 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\Frogger\gameControllerFrog.cs">
     <Files>
-      <File FileName="Assets\_Scripts\Ovomania\gameController.cs" Line="4" Column="1" />
-      <File FileName="Assets\_Scripts\Ovomania\eggWatcher.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\globalVariables.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\GiraMilho\GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\GestureRecognizer\GestureRecognizer.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\Frogger\gameControllerFrog.cs" Line="95" Column="44" />
-      <File FileName="Assets\_Scripts\Frogger\frutaBehaviour.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\Frogger\characterMonitor.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\Frogger\movePedra.cs" Line="18" Column="85" />
+      <File FileName="Assets\helpCanvasManager.cs" Line="28" Column="29" />
+      <File FileName="Assets\_Scripts\Frogger\gameControllerFrog.cs" Line="121" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
