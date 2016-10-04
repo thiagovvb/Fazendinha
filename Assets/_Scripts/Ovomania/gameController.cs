@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Pose = Thalmic.Myo.Pose;
 
 public class gameController : MonoBehaviour {
 
@@ -15,9 +16,10 @@ public class gameController : MonoBehaviour {
 	private float startTime;
 	public GameObject[] tampas;
 	private bool[] tampaFechada;
-	private int lastGesture;
+	private Pose lastGesture;
 	private int state;
 	public Canvas helpCanvas;
+	private GameObject myo = null;
 
 	// Use this for initialization
 	void Start () {
@@ -38,11 +40,15 @@ public class gameController : MonoBehaviour {
 		positions[1] = new Vector3(1.32f, 3.13f, -6.06f);
 		positions[2] = new Vector3(0.13f, 3.13f, -6.06f);
 		positions[3] = new Vector3(-1.14f, 3.13f, -6.06f);
+
+		myo = GameObject.Find("Myo");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+		ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
+
 		if(state == 1){
 			int num;
 			if(Time.time - startTime > 1){
@@ -64,20 +70,26 @@ public class gameController : MonoBehaviour {
 				startTime = Time.time;
 			}
 
-			int cGesture = globalVariables.currentGesture;
+			Pose cGesture = thalmicMyo.pose;
 			int cBox = globalVariables.activeBox;
 
-			if(lastGesture != cGesture){
-				if(cGesture == 2){
+			Debug.Log("MyoGesture: " + thalmicMyo.pose);
+
+			if(thalmicMyo.pose != lastGesture){
+				if(thalmicMyo.pose == Pose.FingersSpread){
 					if(tampaFechada[cBox]){
 						tampaFechada[cBox] = false;
 						tampas[cBox].transform.Translate(new Vector3(0,0,2), Space.World);
-					}else{
+					}
+				}
+
+				if(thalmicMyo.pose == Pose.Fist){
+					if(!tampaFechada[cBox]){
 						tampas[cBox].transform.Translate(new Vector3(0,0,-2), Space.World);
 						tampaFechada[cBox] = true;
 					}
 				}
-				lastGesture = cGesture;
+				lastGesture = thalmicMyo.pose;
 			}
 
 			ovosBrancos.text = ": " + globalVariables.qtdOvosBrancos_Local;

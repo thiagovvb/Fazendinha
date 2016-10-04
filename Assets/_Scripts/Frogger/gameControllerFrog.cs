@@ -96,15 +96,20 @@ public class gameControllerFrog : MonoBehaviour {
 
 		if(lastGesture != cGesture){
 
-			if(cGesture == 1){
-				if(player.transform.position.z <= 416.0f) player.transform.Translate(0f,0f,4.1f);
-			}else if(cGesture == 2){
-				if(player.transform.position.z >= 403.4f) player.transform.Translate(0f,0f,-4.1f);
-			}else if(cGesture == 3){
-				player.transform.Translate(-10f,0f,0f);
-			}else if(cGesture == 4){
-				player.transform.Translate(10f,0f,0f);
+			if(lastGesture == 0){
+
+				if(cGesture == 1){
+					if(player.transform.position.z <= 416.0f) player.transform.Translate(0f,0f,4.1f);
+				}else if(cGesture == 2){
+					if(player.transform.position.z >= 403.4f) player.transform.Translate(0f,0f,-4.1f);
+				}else if(cGesture == 3){
+					player.transform.Translate(-10f,0f,0f);
+				}else if(cGesture == 4){
+					player.transform.Translate(10f,0f,0f);
+				}
+
 			}
+
 			lastGesture = cGesture;
 
 		}
