@@ -12,6 +12,7 @@ public class globalVariables : MonoBehaviour {
 	public static int qtdFrutas_Local;
 	public static int qtdOvosBrancos_Local;
 	public static int qtdOvosPodres_Local;
+	public static int qtdOvosBrancosPerdidos_Local;
 	public static int qtdFrutas;
 
 	public static int frutasQuota;
@@ -20,6 +21,7 @@ public class globalVariables : MonoBehaviour {
 
 	public static bool blurActive;
 
+	public static float eggSpeed;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +36,8 @@ public class globalVariables : MonoBehaviour {
 		ovosQuota = 0;
 		qtdOvosBrancos_Local = 0;
 		qtdOvosPodres_Local = 0;
+		qtdOvosBrancosPerdidos_Local = 0;
+		eggSpeed = 1;
 	}
 	
 	// Update is called once per frame

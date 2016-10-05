@@ -6,12 +6,10 @@ public class eggWatcher : MonoBehaviour {
 
 	private int qtdOvosBrancos;
 	private int qtdOvosPodres;
-	private bool guardado;
 
 	// Use this for initialization
 	void Start () {
-	
-		guardado = false;
+
 		qtdOvosPodres = 0;
 		qtdOvosBrancos = 0;
 
@@ -20,17 +18,27 @@ public class eggWatcher : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(transform.position.z > 3){
+			if(tag.Equals("OvoBranco")){
+				globalVariables.qtdOvosBrancosPerdidos_Local++;
+				globalVariables.eggSpeed -= 0.015f;
+			}
 			Destroy(gameObject);
 		}
 
-		if(transform.position.y < 2.4 && transform.position.z < 1 && !guardado){
-			guardado = true;
+	}
+
+	void OnTriggerEnter(Collider other){
+		if(other.gameObject.tag == "Tampa"){
 			if(tag.Equals("OvoBranco")){
 				globalVariables.qtdOvos++;
 				globalVariables.qtdOvosBrancos_Local++;
+				globalVariables.eggSpeed += 0.045f;
 			}
-			else if(tag.Equals("OvoPodre")) globalVariables.qtdOvosPodres_Local++;
+			else if(tag.Equals("OvoPodre")){
+				globalVariables.qtdOvosPodres_Local++;
+				globalVariables.eggSpeed -= 0.015f;
+			}
 		}
-
 	}
+
 }

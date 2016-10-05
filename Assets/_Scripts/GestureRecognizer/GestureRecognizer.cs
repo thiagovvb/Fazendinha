@@ -28,11 +28,11 @@ public class GestureRecognizer : MonoBehaviour {
 		emgData = new List<double[]>();
 		isTime = false;
 
-		Dataset d = new Dataset("banco_completo5.csv");
+		Dataset d = new Dataset("banco_completo4.csv");
 		c = new Classifier(d);
 
 		c.openDataset();
-		c.setupNetwork(16, new int[2]{11,6});
+		c.setupNetwork(16, new int[2]{10,5});
 		c.trainBackprop(1000,0.3,0.2);
 
 		DontDestroyOnLoad(this);
@@ -116,8 +116,8 @@ public class GestureRecognizer : MonoBehaviour {
 
 		}
 
-		Debug.Log("MinValue: " + matMinMax[0,0] + " , " + matMinMax[1,0] + " , " + matMinMax[2,0] + " , " + matMinMax[3,0] + " , " + matMinMax[4,0] + " , " + matMinMax[5,0] + " , " + matMinMax[6,0] + " , " + matMinMax[7,0]);
-		Debug.Log("MaxValue: " + matMinMax[0,1] + " , " + matMinMax[1,1] + " , " + matMinMax[2,1] + " , " + matMinMax[3,1] + " , " + matMinMax[4,1] + " , " + matMinMax[5,1] + " , " + matMinMax[6,1] + " , " + matMinMax[7,1]);
+		//Debug.Log("MinValue: " + matMinMax[0,0] + " , " + matMinMax[1,0] + " , " + matMinMax[2,0] + " , " + matMinMax[3,0] + " , " + matMinMax[4,0] + " , " + matMinMax[5,0] + " , " + matMinMax[6,0] + " , " + matMinMax[7,0]);
+		//Debug.Log("MaxValue: " + matMinMax[0,1] + " , " + matMinMax[1,1] + " , " + matMinMax[2,1] + " , " + matMinMax[3,1] + " , " + matMinMax[4,1] + " , " + matMinMax[5,1] + " , " + matMinMax[6,1] + " , " + matMinMax[7,1]);
 
 		return matMinMax;
 

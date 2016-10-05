@@ -73,8 +73,6 @@ public class gameController : MonoBehaviour {
 			Pose cGesture = thalmicMyo.pose;
 			int cBox = globalVariables.activeBox;
 
-			Debug.Log("MyoGesture: " + thalmicMyo.pose);
-
 			if(thalmicMyo.pose != lastGesture){
 				if(thalmicMyo.pose == Pose.FingersSpread){
 					if(tampaFechada[cBox]){
