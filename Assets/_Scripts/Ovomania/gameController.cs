@@ -17,7 +17,7 @@ public class gameController : MonoBehaviour {
 	public GameObject[] tampas;
 	private bool[] tampaFechada;
 	private Pose lastGesture;
-	private int state;
+	public int state;
 	public Canvas helpCanvas;
 	private GameObject myo = null;
 
@@ -140,4 +140,10 @@ public class gameController : MonoBehaviour {
 		helpCanvas.enabled = false;
 		state = 1;
 	}
+
+	public void activateHelp(){
+		state = 2;
+		helpCanvas.enabled = true;
+	}
+
 }

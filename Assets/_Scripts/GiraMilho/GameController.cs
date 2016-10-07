@@ -33,6 +33,13 @@ public class GameController : MonoBehaviour {
 
 	}
 
+	public void activateHelp(){
+	
+		state = 4;
+		tipCanvas.enabled = true;
+	
+	}
+
 	public void voltarBtn(){
 		SceneManager.LoadScene("MainMenu");
 	}

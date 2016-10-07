@@ -23,6 +23,7 @@ public class characterMonitor : MonoBehaviour {
 				globalVariables.qtdFrutas++;
 				globalVariables.qtdFrutas_Local++;
 				placar.text = "Voce coletou a fruta! Continue assim!";
+				globalVariables.stoneSpeed += 0.050f;
 			}
 		}
 
@@ -42,6 +43,7 @@ public class characterMonitor : MonoBehaviour {
 			gameObject.transform.position = new Vector3(160.0f, 1.63f, 399.51f);
 			gameControllerFrog.carryingFruit = false;
 			placar.text = "Ah que pena! Voce colidiu com uma pedra!";
+			globalVariables.stoneSpeed -= 0.050f;
 		}
 	}
 

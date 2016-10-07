@@ -32,7 +32,7 @@ public class eggWatcher : MonoBehaviour {
 			if(tag.Equals("OvoBranco")){
 				globalVariables.qtdOvos++;
 				globalVariables.qtdOvosBrancos_Local++;
-				globalVariables.eggSpeed += 0.045f;
+				globalVariables.eggSpeed += 0.030f;
 			}
 			else if(tag.Equals("OvoPodre")){
 				globalVariables.qtdOvosPodres_Local++;

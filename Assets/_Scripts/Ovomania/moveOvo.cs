@@ -13,13 +13,14 @@ public class moveOvo : MonoBehaviour {
 	
 		Rigidbody r = gameObject.GetComponent(typeof(Rigidbody)) as Rigidbody;
 
-		if (transform.position.z < 0.3) {
-
-			transform.RotateAround(transform.position,transform.up, -Time.deltaTime * 60 * globalVariables.eggSpeed);
-			transform.Translate(new Vector3(0,0,Time.deltaTime), Space.World);
-		}else if(!r.useGravity){
-			r.useGravity = true;
-			this.enabled = false;
+		if(GameObject.Find("GameController").GetComponent<gameController>().state != 2){
+			if (transform.position.z < 0.3) {
+				transform.RotateAround(transform.position,transform.up, -Time.deltaTime * 60 * globalVariables.eggSpeed);
+				transform.Translate(new Vector3(0,0,Time.deltaTime), Space.World);
+			}else if(!r.useGravity){
+				r.useGravity = true;
+				this.enabled = false;
+			}
 		}
 	}
 }

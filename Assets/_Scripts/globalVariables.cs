@@ -22,6 +22,7 @@ public class globalVariables : MonoBehaviour {
 	public static bool blurActive;
 
 	public static float eggSpeed;
+	public static float stoneSpeed;
 
 	// Use this for initialization
 	void Start () {
@@ -37,11 +38,12 @@ public class globalVariables : MonoBehaviour {
 		qtdOvosBrancos_Local = 0;
 		qtdOvosPodres_Local = 0;
 		qtdOvosBrancosPerdidos_Local = 0;
-		eggSpeed = 1;
+		eggSpeed = 1f;
+		stoneSpeed = 1f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		
 	}
 }

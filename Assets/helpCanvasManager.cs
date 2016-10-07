@@ -28,4 +28,22 @@ public class helpCanvasManager : MonoBehaviour {
 		placarOvos.text = (": " + globalVariables.qtdOvos + " / " + globalVariables.ovosQuota);
 
 	}
+
+	public void helpBtn(){
+
+		if(SceneManager.GetActiveScene().name.Equals("JogoFrogger")){
+			
+			gameControllerFrog frogCont = (gameControllerFrog)GameObject.Find("GameController").GetComponent<gameControllerFrog>();
+			frogCont.activateHelp();
+
+		}else if(SceneManager.GetActiveScene().name.Equals("JogoOvos")){
+			gameController ovosCont = (gameController)GameObject.Find("GameController").GetComponent<gameController>();
+			ovosCont.activateHelp();
+		}else if(SceneManager.GetActiveScene().name.Equals("JogoMilho")){
+			GameController milhoCont = (GameController)GameObject.Find("GameController").GetComponent<GameController>();
+			milhoCont.activateHelp();
+		}
+
+	}
+
 }

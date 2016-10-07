@@ -16,7 +16,7 @@ public class gameControllerFrog : MonoBehaviour {
 	private int lastGesture;
 	public Text placar;
 	public Canvas helpCanvas;
-	private int state;
+	public int state; // 0 = Pre-start state, 1 = Playing, 2 = Pause/Help
 
 	private int tempoRespawn;
 
@@ -26,7 +26,6 @@ public class gameControllerFrog : MonoBehaviour {
 		positions = new Vector3[4];
 		goalPositions = new Vector3[6];
 		lastGesture = 0;
-		globalVariables.qtdFrutas_Local = 0;
 		state = 0;
 
 		startTime = Time.time;
@@ -58,7 +57,8 @@ public class gameControllerFrog : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		Debug.Log("Stone speed = " + globalVariables.stoneSpeed);
+
 		int num;
 		int pos;
 
@@ -124,6 +124,11 @@ public class gameControllerFrog : MonoBehaviour {
 	public void continuarBtn(){
 		helpCanvas.enabled = false;
 		state = 1;
+	}
+
+	public void activateHelp(){
+		state = 2;
+		helpCanvas.enabled = true;
 	}
 		
 
