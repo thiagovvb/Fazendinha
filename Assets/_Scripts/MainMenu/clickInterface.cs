@@ -15,6 +15,8 @@ public class clickInterface : MonoBehaviour {
 	public Canvas mainMenu;
 	public Canvas gameplayMenu;
 	public Canvas objetivosMenu;
+    public Canvas perfilMenu;
+    public Canvas criarPerfilMenu;
 
 	// Use this for initialization
 	void Start () {
@@ -30,11 +32,15 @@ public class clickInterface : MonoBehaviour {
 		if(!started){
 			gameplayMenu.enabled = false;
 			objetivosMenu.enabled = false;
-			started = true;
+            perfilMenu.enabled = false;
+            criarPerfilMenu.enabled = false;
+            started = true;
 		}else{
 			mainMenu.enabled = false;
 			objetivosMenu.enabled = false;
-			state = 2;
+            perfilMenu.enabled = false;
+            criarPerfilMenu.enabled = false;
+            state = 2;
 		}
 
 	}
@@ -56,6 +62,26 @@ public class clickInterface : MonoBehaviour {
 			gameplayMenu.enabled = true;
 			state = 2;
 		}
+
+        if (input.Equals("Perfis"))
+        {
+            mainMenu.enabled = false;
+            perfilMenu.enabled = true;
+        }
+
+        if (input.Equals("CriarPerfil"))
+        {
+            perfilMenu.enabled = false;
+            criarPerfilMenu.enabled = true;
+        }
+
+        if (input.Equals("CriouPerfil"))
+        {
+            perfilMenu.enabled = true;
+            criarPerfilMenu.enabled = false;
+            perfilManager pm = (perfilManager) perfilMenu.GetComponent<perfilManager>();
+            pm.UpdateList();
+        }
 
 	}
 

@@ -1,13 +1,14 @@
-﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\Ovomania\moveOvo.cs">
+﻿<Properties StartupItem="Fazendinha.CSharp.Plugins.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\MainMenu\clickInterface.cs">
     <Files>
-      <File FileName="Assets\helpCanvasManager.cs" Line="40" Column="110" />
-      <File FileName="Assets\_Scripts\Frogger\gameControllerFrog.cs" Line="130" Column="13" />
-      <File FileName="Assets\_Scripts\Frogger\movePedra.cs" Line="20" Column="61" />
-      <File FileName="Assets\_Scripts\globalVariables.cs" Line="47" Column="3" />
-      <File FileName="Assets\_Scripts\Ovomania\gameController.cs" Line="20" Column="9" />
+      <File FileName="Assets\helpCanvasManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Frogger\gameControllerFrog.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Frogger\movePedra.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\globalVariables.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\Ovomania\gameController.cs" Line="1" Column="1" />
       <File FileName="Assets\_Scripts\Ovomania\moveOvo.cs" Line="16" Column="6" />
+      <File FileName="Assets\_Scripts\MainMenu\clickInterface.cs" Line="14" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
