@@ -7,7 +7,6 @@ public class GameController : MonoBehaviour {
 
 
 	private int state;
-	private float speed;
 	public GameObject milho;
 	public GameObject molde;
 	public Text milhoPlacar;
@@ -20,7 +19,6 @@ public class GameController : MonoBehaviour {
 	void Start () {
 
 		state = 4; //Show GUI
-		speed = 2.0f;
 		qtdMilho = 0;
 		qtdMilhosPerdidos = 0;
 
@@ -51,7 +49,7 @@ public class GameController : MonoBehaviour {
 		if(state == 0){
 
 			//Passo
-			float step = speed * Time.deltaTime;
+			float step = globalVariables.cornSpeed * Time.deltaTime;
 
 			//Capturar a posição do Molde
 			Vector3 pos = molde.transform.position;
@@ -88,7 +86,7 @@ public class GameController : MonoBehaviour {
 
 		}else if(state == 2){
 
-			speed -= 0.05f;
+			globalVariables.cornSpeed -= 0.05f;
 			qtdMilhosPerdidos++;
 			milhoPerdidoPlacar.text = ": " + qtdMilhosPerdidos;
 
@@ -98,7 +96,7 @@ public class GameController : MonoBehaviour {
 
 		}else if(state == 3){
 
-			speed += 0.05f;
+			globalVariables.cornSpeed += 0.05f;
 			Debug.Log("Você ganhou!");
 			qtdMilho++;
 			milhoPlacar.text = ": " + qtdMilho;

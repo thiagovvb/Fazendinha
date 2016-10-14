@@ -12,9 +12,15 @@ public class CriarNovoPerfil : MonoBehaviour {
     {
         StreamWriter sw = File.AppendText("./profiles/profilelist");
         sw.WriteLine(nome.text + "-" + sobrenome.text);
-        nome.text = "";
-        sobrenome.text = "";
         sw.Close();
+
+		System.IO.File.Create("./profiles/" + nome.text + sobrenome.text);
+		//System.IO.File.WriteAllText("./profiles/" + nome.text + sobrenome.text, "1-1-2");
+
+		nome.text = "";
+		sobrenome.text = "";
+
+
     }
 
 }

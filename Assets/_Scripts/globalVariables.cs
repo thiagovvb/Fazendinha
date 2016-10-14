@@ -23,6 +23,7 @@ public class globalVariables : MonoBehaviour {
 
 	public static float eggSpeed;
 	public static float stoneSpeed;
+	public static float cornSpeed;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +41,7 @@ public class globalVariables : MonoBehaviour {
 		qtdOvosBrancosPerdidos_Local = 0;
 		eggSpeed = 1f;
 		stoneSpeed = 1f;
+		cornSpeed = 1f;
 	}
 	
 	// Update is called once per frame
