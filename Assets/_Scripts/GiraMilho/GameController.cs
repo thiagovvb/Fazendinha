@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
+using System.IO;
 
 public class GameController : MonoBehaviour {
 
@@ -40,6 +41,10 @@ public class GameController : MonoBehaviour {
 
 	public void voltarBtn(){
 		SceneManager.LoadScene("MainMenu");
+		File.WriteAllText("./profiles/" + globalVariables.activeProfile,
+			globalVariables.eggSpeed + "-" +
+			globalVariables.cornSpeed + "-" + 
+			globalVariables.stoneSpeed);
 	}
 
 	// Update is called once per frame

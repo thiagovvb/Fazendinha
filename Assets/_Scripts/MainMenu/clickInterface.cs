@@ -83,6 +83,12 @@ public class clickInterface : MonoBehaviour {
             pm.UpdateList();
         }
 
+		if (input.Equals("SelecionouPerfil"))
+		{
+			perfilMenu.enabled = false;
+			mainMenu.enabled = true;
+		}
+
 	}
 
 	/*void OnGUI(){

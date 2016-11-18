@@ -25,6 +25,8 @@ public class globalVariables : MonoBehaviour {
 	public static float stoneSpeed;
 	public static float cornSpeed;
 
+	public static string activeProfile;
+
 	// Use this for initialization
 	void Start () {
 		blurActive = true;
@@ -42,6 +44,7 @@ public class globalVariables : MonoBehaviour {
 		eggSpeed = 1f;
 		stoneSpeed = 1f;
 		cornSpeed = 1f;
+		activeProfile = "";
 	}
 	
 	// Update is called once per frame
