@@ -5,6 +5,7 @@ using System.Collections;
 public class perfilManager : MonoBehaviour {
 
     public Dropdown dp;
+	public Text tx;
     
 	// Use this for initialization
 	void Start () {
@@ -46,6 +47,8 @@ public class perfilManager : MonoBehaviour {
 		string[] tokens = dp.options[dp.value].text.Split(' ');
 		string[] lines = System.IO.File.ReadAllLines("./profiles/" + tokens[0] + "-" + tokens[1]);
 		globalVariables.activeProfile = tokens[0] + "-" + tokens[1];
+		tx.text = "Perfil Selecionado: " + tokens[0] + " " + tokens[1];
+
 
 		tokens = lines[0].Split('-');
 	

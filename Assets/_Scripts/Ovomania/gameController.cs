@@ -75,6 +75,7 @@ public class gameController : MonoBehaviour {
 
 			if(thalmicMyo.pose != lastGesture){
 				if(thalmicMyo.pose == Pose.FingersSpread){
+					Debug.Log("Fingers Spread, cbox = " + cBox);
 					if(tampaFechada[cBox]){
 						tampaFechada[cBox] = false;
 						tampas[cBox].transform.Translate(new Vector3(0,0,2), Space.World);
@@ -82,6 +83,7 @@ public class gameController : MonoBehaviour {
 				}
 
 				if(thalmicMyo.pose == Pose.Fist){
+					Debug.Log("Fist, cbox = " + cBox);
 					if(!tampaFechada[cBox]){
 						tampas[cBox].transform.Translate(new Vector3(0,0,-2), Space.World);
 						tampaFechada[cBox] = true;

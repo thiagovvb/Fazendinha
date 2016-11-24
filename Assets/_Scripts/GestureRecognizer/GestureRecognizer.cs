@@ -146,7 +146,7 @@ public class GestureRecognizer : MonoBehaviour {
 				isTime = false;
 				currentGesture = classifyGesture(getMaxAndMin(emgData));
 				globalVariables.currentGesture = currentGesture;
-				Debug.Log("Gesture: " + currentGesture);
+				//Debug.Log("Gesture: " + currentGesture);
 				emgData.Clear();
 			}else{
 				emgData.Add(emgDouble);
