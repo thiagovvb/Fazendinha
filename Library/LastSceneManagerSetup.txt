@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Loading.unity
+- path: Assets/_Scenes/JogoOvos.unity
   isLoaded: 1
   isActive: 1

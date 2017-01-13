@@ -9,6 +9,11 @@ public class moveCursor : MonoBehaviour {
 	private int pos;
 	private bool posSet;
 	private float[] positions;
+	public GameObject[] tampas;
+	public GameObject[] caixas;
+	public Texture selectTxtr;
+	public Texture defaultTxtr;
+	public Renderer rend;
 
 	// Update is called once per frame
 
@@ -40,8 +45,18 @@ public class moveCursor : MonoBehaviour {
 		if((tanPos - myoStartPos) > 10){
 			Debug.Log("Direita");
 
+			rend = caixas[pos].GetComponent<Renderer>();
+			rend.material.mainTexture = defaultTxtr;
+			rend = tampas[pos].GetComponent<Renderer>();
+			rend.material.mainTexture = defaultTxtr;
+
 			++pos;
 			if(pos >= 4) --pos;
+
+			rend = caixas[pos].GetComponent<Renderer>();
+			rend.material.mainTexture = selectTxtr;
+			rend = tampas[pos].GetComponent<Renderer>();
+			rend.material.mainTexture = selectTxtr;
 
 			transform.position = new Vector3(positions[pos], transform.position.y, transform.position.z);
 
@@ -50,9 +65,18 @@ public class moveCursor : MonoBehaviour {
 		}else if((tanPos - myoStartPos) < -10){
 			Debug.Log("Esquerda");
 
+			rend = caixas[pos].GetComponent<Renderer>();
+			rend.material.mainTexture = defaultTxtr;
+			rend = tampas[pos].GetComponent<Renderer>();
+			rend.material.mainTexture = defaultTxtr;
 
 			--pos;
 			if(pos < 0) ++pos;
+
+			rend = caixas[pos].GetComponent<Renderer>();
+			rend.material.mainTexture = selectTxtr;
+			rend = tampas[pos].GetComponent<Renderer>();
+			rend.material.mainTexture = selectTxtr;
 
 			transform.position = new Vector3(positions[pos], transform.position.y, transform.position.z);
 
