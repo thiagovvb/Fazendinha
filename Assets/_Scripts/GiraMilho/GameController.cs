@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour {
 	public Text milhoPlacar;
 	public Text milhoPerdidoPlacar;
 	public Canvas tipCanvas;
+	public Canvas objCanvas;
 
 	private int qtdMilho;
 	private int qtdMilhosPerdidos;
@@ -21,6 +22,7 @@ public class GameController : MonoBehaviour {
 		state = 4; //Show GUI
 		qtdMilho = 0;
 		qtdMilhosPerdidos = 0;
+		objCanvas.enabled = false;
 
 	}
 
@@ -54,6 +56,14 @@ public class GameController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+		if(globalVariables.qtdMilho >= globalVariables.milhosQuota &&
+		   	globalVariables.qtdFrutas >= globalVariables.frutasQuota &&
+			globalVariables.qtdOvos >= globalVariables.ovosQuota){
+
+			state = 4;
+			objCanvas.enabled = true;
+		}
 
 		//Estado de jogo
 		if(state == 0){
@@ -113,6 +123,8 @@ public class GameController : MonoBehaviour {
 			globalVariables.qtdMilho++;
 
 			state = 1;
+
+		}else if(state == 5){
 
 		}
 

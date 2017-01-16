@@ -91,6 +91,7 @@
      <Compile Include="Assets\_Scripts\Vaquinha\GameController_Vaq.cs" />
      <Compile Include="Assets\_Scripts\globalVariables.cs" />
      <Compile Include="Assets\_Scripts\helpCanvasManager.cs" />
+     <Compile Include="Assets\_Scripts\objectivesBtnManager.cs" />
      <Compile Include="Assets\_Scripts\perfilManager.cs" />
      <Compile Include="Assets\_Scripts\updatePlacar.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
