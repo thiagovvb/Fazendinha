@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.IO;
 
 public class perfilManager : MonoBehaviour {
 
@@ -42,6 +43,17 @@ public class perfilManager : MonoBehaviour {
 
 	}
 
+	public static void UpdateVariables(){
+		File.WriteAllText("./profiles/" + globalVariables.activeProfile,
+			globalVariables.eggSpeed + "-" +
+			globalVariables.cornSpeed + "-" + 
+			globalVariables.stoneSpeed + "-" + 
+			globalVariables.milhosQuota + "-" +
+			globalVariables.frutasQuota + "-" +
+			globalVariables.ovosQuota);
+	}
+
+
 	public void LoadProfileBtn(){
 
 		string[] tokens = dp.options[dp.value].text.Split(' ');
@@ -49,16 +61,19 @@ public class perfilManager : MonoBehaviour {
 		globalVariables.activeProfile = tokens[0] + "-" + tokens[1];
 		tx.text = "Perfil Selecionado: " + tokens[0] + " " + tokens[1];
 
-
 		tokens = lines[0].Split('-');
 	
 		globalVariables.eggSpeed = float.Parse(tokens[0]);
 		globalVariables.cornSpeed = float.Parse(tokens[1]);
 		globalVariables.stoneSpeed = float.Parse(tokens[2]);
 
+		globalVariables.milhosQuota = int.Parse(tokens[3]);
+		globalVariables.frutasQuota = int.Parse(tokens[4]);
+		globalVariables.ovosQuota = int.Parse(tokens[5]);
+
 		Debug.Log("ACTIVE = " + globalVariables.activeProfile);
 
-		Debug.Log(tokens[0] + " " + tokens[1] + " " + tokens[2]);
+		Debug.Log(tokens[3] + " " + tokens[4] + " " + tokens[5]);
 
 	}
 

@@ -136,6 +136,7 @@ public class gameController : MonoBehaviour {
 	public void voltarBtn(){
 		Debug.Log("NHEGURE");
 		SceneManager.LoadScene("MainMenu");
+		perfilManager.UpdateVariables();
 	}
 		
 	public void btnContinua(){

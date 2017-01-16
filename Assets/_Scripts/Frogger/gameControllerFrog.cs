@@ -117,8 +117,8 @@ public class gameControllerFrog : MonoBehaviour {
 	}
 
 	public void voltarBtn(){
-		Debug.Log("NHEGURE");
 		SceneManager.LoadScene("MainMenu");
+		perfilManager.UpdateVariables();
 	}
 
 	public void continuarBtn(){

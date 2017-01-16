@@ -6,7 +6,6 @@ using System.IO;
 
 public class GameController : MonoBehaviour {
 
-
 	private int state;
 	public GameObject milho;
 	public GameObject molde;
@@ -40,11 +39,17 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void voltarBtn(){
+		
 		SceneManager.LoadScene("MainMenu");
-		File.WriteAllText("./profiles/" + globalVariables.activeProfile,
+		perfilManager.UpdateVariables();
+		/*File.WriteAllText("./profiles/" + globalVariables.activeProfile,
 			globalVariables.eggSpeed + "-" +
 			globalVariables.cornSpeed + "-" + 
-			globalVariables.stoneSpeed);
+			globalVariables.stoneSpeed + "-" + 
+			globalVariables.milhosQuota + "-" +
+			globalVariables.frutasQuota + "-" +
+			globalVariables.ovosQuota);*/
+		
 	}
 
 	// Update is called once per frame

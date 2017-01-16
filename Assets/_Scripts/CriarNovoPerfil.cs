@@ -17,7 +17,7 @@ public class CriarNovoPerfil : MonoBehaviour {
 		System.IO.FileStream fs = System.IO.File.Create("./profiles/" + nome.text + "-" + sobrenome.text);
 		fs.Close();
 		sw = File.AppendText("./profiles/" + nome.text + "-" + sobrenome.text);
-		sw.WriteLine("1-1-2");
+		sw.WriteLine("1-1-2-30-30-30");
 		sw.Close();
 
 		nome.text = "";

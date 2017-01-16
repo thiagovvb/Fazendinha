@@ -25,10 +25,6 @@ public class clickInterface : MonoBehaviour {
 		setas[1].SetActive(false);
 		setas[2].SetActive(false);
 
-		placarMilho.text = (globalVariables.qtdMilho + " / " + globalVariables.milhosQuota);
-		placarFrutas.text = (globalVariables.qtdFrutas + " / " + globalVariables.frutasQuota);
-		placarOvos.text = (globalVariables.qtdOvos + " / " + globalVariables.ovosQuota);
-
 		if(!started){
 			gameplayMenu.enabled = false;
 			objetivosMenu.enabled = false;
@@ -50,6 +46,11 @@ public class clickInterface : MonoBehaviour {
 		if(input.Equals("Start")){
 			mainMenu.enabled = false;
 			objetivosMenu.enabled = true;
+
+			placarMilho.text = (globalVariables.qtdMilho + " / " + globalVariables.milhosQuota);
+			placarFrutas.text = (globalVariables.qtdFrutas + " / " + globalVariables.frutasQuota);
+			placarOvos.text = (globalVariables.qtdOvos + " / " + globalVariables.ovosQuota);
+
 			state = 1;
 		}
 
