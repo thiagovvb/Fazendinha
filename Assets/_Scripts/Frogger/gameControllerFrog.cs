@@ -16,6 +16,7 @@ public class gameControllerFrog : MonoBehaviour {
 	private int lastGesture;
 	public Text placar;
 	public Canvas helpCanvas;
+	public Canvas objCanvas;
 	public int state; // 0 = Pre-start state, 1 = Playing, 2 = Pause/Help
 
 	private int tempoRespawn;
@@ -44,6 +45,7 @@ public class gameControllerFrog : MonoBehaviour {
 
 		remainingFruits = 6;
 		carryingFruit = false;
+		objCanvas.enabled = false;
 
 		int fPos;
 
@@ -61,6 +63,14 @@ public class gameControllerFrog : MonoBehaviour {
 
 		int num;
 		int pos;
+
+		if(globalVariables.qtdMilho >= globalVariables.milhosQuota &&
+			globalVariables.qtdFrutas >= globalVariables.frutasQuota &&
+			globalVariables.qtdOvos >= globalVariables.ovosQuota){
+
+			state = 0;
+			objCanvas.enabled = true;
+		}
 
 		if(state == 1){
 

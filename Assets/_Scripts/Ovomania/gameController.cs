@@ -19,12 +19,14 @@ public class gameController : MonoBehaviour {
 	private Pose lastGesture;
 	public int state;
 	public Canvas helpCanvas;
+	public Canvas objCanvas;
 	private GameObject myo = null;
 
 	// Use this for initialization
 	void Start () {
 
 		state = 0;
+		objCanvas.enabled = false;
 
 		defaultQuaternion = Quaternion.Euler(new Vector3(90,-90,0));
 		lastGesture = 0;
@@ -47,7 +49,18 @@ public class gameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		ovosBrancos.text = ": " + globalVariables.qtdOvosBrancos_Local;
+		ovosPodres.text = ": " + globalVariables.qtdOvosPodres_Local;
+
 		ThalmicMyo thalmicMyo = myo.GetComponent<ThalmicMyo> ();
+
+		if(globalVariables.qtdMilho >= globalVariables.milhosQuota &&
+			globalVariables.qtdFrutas >= globalVariables.frutasQuota &&
+			globalVariables.qtdOvos >= globalVariables.ovosQuota){
+
+			state = 0;
+			objCanvas.enabled = true;
+		}
 
 		if(state == 1){
 			int num;
@@ -92,8 +105,7 @@ public class gameController : MonoBehaviour {
 				lastGesture = thalmicMyo.pose;
 			}
 
-			ovosBrancos.text = ": " + globalVariables.qtdOvosBrancos_Local;
-			ovosPodres.text = ": " + globalVariables.qtdOvosPodres_Local;
+
 		}
 
 		/*if(Input.GetKeyDown("1")){
