@@ -7,6 +7,7 @@ public class clickInterface : MonoBehaviour {
 
 	public GameObject[] setas;
 	public Camera camera;
+	public Camera placaCamera;
 	public int state = 0;
 	public static bool started = false;
 	public Text placarMilho;
@@ -17,6 +18,8 @@ public class clickInterface : MonoBehaviour {
 	public Canvas objetivosMenu;
     public Canvas perfilMenu;
     public Canvas criarPerfilMenu;
+	public TextMesh[] opArray;
+
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +33,7 @@ public class clickInterface : MonoBehaviour {
 			objetivosMenu.enabled = false;
             perfilMenu.enabled = false;
             criarPerfilMenu.enabled = false;
+			//camera.enabled = false;
             started = true;
 		}else{
 			mainMenu.enabled = false;
@@ -44,6 +48,10 @@ public class clickInterface : MonoBehaviour {
 	public void BtnManager(string input){
 
 		if(input.Equals("Start")){
+
+			camera.enabled = true;
+			placaCamera.enabled = false;
+
 			mainMenu.enabled = false;
 			objetivosMenu.enabled = true;
 
@@ -66,6 +74,8 @@ public class clickInterface : MonoBehaviour {
 
         if (input.Equals("Perfis"))
         {
+			camera.enabled = true;
+			placaCamera.enabled = false;
             mainMenu.enabled = false;
             perfilMenu.enabled = true;
         }
@@ -86,8 +96,11 @@ public class clickInterface : MonoBehaviour {
 
 		if (input.Equals("SelecionouPerfil"))
 		{
+			Debug.Log("Nhe");
 			perfilMenu.enabled = false;
 			mainMenu.enabled = true;
+			placaCamera.enabled = true;
+			camera.enabled = false;
 		}
 
 	}
@@ -128,10 +141,59 @@ public class clickInterface : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		RaycastHit hit = new RaycastHit();
-		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		if(state == 0){
+		
+			RaycastHit hit = new RaycastHit();
+			Ray ray = placaCamera.ScreenPointToRay (Input.mousePosition);
+
+			if(SceneManager.GetActiveScene().name.Equals("MainMenu")){
+
+				if (Physics.Raycast (ray, out hit, 100.0f))
+				{  
+
+					//Debug.Log(hit.collider.gameObject.name);
+
+					if(hit.collider.gameObject.name.Equals("Op01")){
+						opArray[0].color = Color.red;
+						if(Input.GetMouseButtonDown(0)){
+							BtnManager("Start");
+						}
+					}else opArray[0].color = Color.yellow;
+
+					if(hit.collider.gameObject.name.Equals("Op02")){
+						opArray[1].color = Color.red;
+						if(Input.GetMouseButtonDown(0)){
+							//BtnManager("Start"); Não implementado ainda!
+							BtnManager("Perfis");
+						}
+					}else opArray[1].color = Color.yellow;
+
+					if(hit.collider.gameObject.name.Equals("Op03")){
+						opArray[2].color = Color.red;
+						if(Input.GetMouseButtonDown(0)){
+							//BtnManager("Perfis"); Não implementado ainda!
+						}
+					}else opArray[2].color = Color.yellow;
+
+					if(hit.collider.gameObject.name.Equals("Op04")){
+						opArray[3].color = Color.red;
+						if(Input.GetMouseButtonDown(0)){
+							BtnManager("Exit");
+						}
+					}else opArray[3].color = Color.yellow;
+						
+
+				}
+
+			}
+
+		}
 
 		if(state == 2){
+
+			RaycastHit hit = new RaycastHit();
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+
 			if(SceneManager.GetActiveScene().name.Equals("MainMenu")){
 				if (Physics.Raycast (ray, out hit, 100.0f))
 				{  
