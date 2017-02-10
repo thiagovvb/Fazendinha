@@ -18,6 +18,7 @@ public class clickInterface : MonoBehaviour {
 	public Canvas objetivosMenu;
     public Canvas perfilMenu;
     public Canvas criarPerfilMenu;
+	public Canvas creditosCanvas;
 	public TextMesh[] opArray;
 
 
@@ -33,6 +34,7 @@ public class clickInterface : MonoBehaviour {
 			objetivosMenu.enabled = false;
             perfilMenu.enabled = false;
             criarPerfilMenu.enabled = false;
+			creditosCanvas.enabled = false;
 			//camera.enabled = false;
             started = true;
 		}else{
@@ -40,6 +42,7 @@ public class clickInterface : MonoBehaviour {
 			objetivosMenu.enabled = false;
             perfilMenu.enabled = false;
             criarPerfilMenu.enabled = false;
+			creditosCanvas.enabled = false;
             state = 2;
 		}
 
@@ -98,6 +101,22 @@ public class clickInterface : MonoBehaviour {
 		{
 			Debug.Log("Nhe");
 			perfilMenu.enabled = false;
+			mainMenu.enabled = true;
+			placaCamera.enabled = true;
+			camera.enabled = false;
+		}
+
+		if (input.Equals("Creditos"))
+		{
+			camera.enabled = true;
+			placaCamera.enabled = false;
+			mainMenu.enabled = false;
+			creditosCanvas.enabled = true;
+		}
+
+		if (input.Equals("voltarCreditos"))
+		{
+			creditosCanvas.enabled = false;
 			mainMenu.enabled = true;
 			placaCamera.enabled = true;
 			camera.enabled = false;
@@ -171,7 +190,7 @@ public class clickInterface : MonoBehaviour {
 					if(hit.collider.gameObject.name.Equals("Op03")){
 						opArray[2].color = Color.red;
 						if(Input.GetMouseButtonDown(0)){
-							//BtnManager("Perfis"); Não implementado ainda!
+							BtnManager("Creditos");
 						}
 					}else opArray[2].color = Color.yellow;
 
