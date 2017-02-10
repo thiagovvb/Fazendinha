@@ -19,6 +19,7 @@ public class clickInterface : MonoBehaviour {
     public Canvas perfilMenu;
     public Canvas criarPerfilMenu;
 	public Canvas creditosCanvas;
+	public Text tx;
 	public TextMesh[] opArray;
 
 
@@ -52,17 +53,19 @@ public class clickInterface : MonoBehaviour {
 
 		if(input.Equals("Start")){
 
-			camera.enabled = true;
-			placaCamera.enabled = false;
+			if(string.Equals(globalVariables.activeProfile,"")){
+				camera.enabled = true;
+				placaCamera.enabled = false;
 
-			mainMenu.enabled = false;
-			objetivosMenu.enabled = true;
+				mainMenu.enabled = false;
+				objetivosMenu.enabled = true;
 
-			placarMilho.text = (globalVariables.qtdMilho + " / " + globalVariables.milhosQuota);
-			placarFrutas.text = (globalVariables.qtdFrutas + " / " + globalVariables.frutasQuota);
-			placarOvos.text = (globalVariables.qtdOvos + " / " + globalVariables.ovosQuota);
+				placarMilho.text = (globalVariables.qtdMilho + " / " + globalVariables.milhosQuota);
+				placarFrutas.text = (globalVariables.qtdFrutas + " / " + globalVariables.frutasQuota);
+				placarOvos.text = (globalVariables.qtdOvos + " / " + globalVariables.ovosQuota);
 
-			state = 1;
+				state = 1;
+			}else tx.color = Color.red;
 		}
 
 		if(input.Equals("Exit")){
@@ -120,6 +123,15 @@ public class clickInterface : MonoBehaviour {
 			mainMenu.enabled = true;
 			placaCamera.enabled = true;
 			camera.enabled = false;
+		}
+
+		if(input.Equals("VoltarMenuP")){
+
+			camera.enabled = false;
+			placaCamera.enabled = true;
+			mainMenu.enabled = true;
+			gameplayMenu.enabled = false;
+			state = 0;
 		}
 
 	}

@@ -60,7 +60,7 @@ public class perfilManager : MonoBehaviour {
 		string[] lines = System.IO.File.ReadAllLines("./profiles/" + tokens[0] + "-" + tokens[1]);
 		globalVariables.activeProfile = tokens[0] + "-" + tokens[1];
 		Debug.Log("Tokens: " + tokens[0] + " " + tokens[1]);
-		//tx.text = "Perfil Selecionado: " + tokens[0] + " " + tokens[1];
+		tx.text = "Bem vindo(a), " + tokens[0];
 
 		tokens = lines[0].Split('-');
 	
