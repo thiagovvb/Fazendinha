@@ -21,6 +21,7 @@ public class gameController : MonoBehaviour {
 	public Canvas helpCanvas;
 	public Canvas objCanvas;
 	private GameObject myo = null;
+	public AudioSource galinhaSound;
 
 	// Use this for initialization
 	void Start () {
@@ -70,11 +71,13 @@ public class gameController : MonoBehaviour {
 					num = Random.Range(0,150);
 
 					if(num >= 80 && num <= 90){
+						galinhaSound.Play();
 						Debug.Log("Numero gerado = " + num + " BRANCO");
 						Instantiate(ovoBranco,positions[i],defaultQuaternion);
 					}
 
 					if(num >= 50 && num <= 55){
+						galinhaSound.Play();
 						Debug.Log("Numero gerado = " + num + " PODRE");
 						Instantiate(ovoPodre,positions[i],defaultQuaternion);
 					}

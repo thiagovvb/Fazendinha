@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour {
 	public Text milhoPerdidoPlacar;
 	public Canvas tipCanvas;
 	public Canvas objCanvas;
+	public AudioSource popSound;
 
 	private int qtdMilho;
 	private int qtdMilhosPerdidos;
@@ -57,6 +58,8 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		Debug.Log("State = " + state);
+
 		if(globalVariables.qtdMilho >= globalVariables.milhosQuota &&
 		   	globalVariables.qtdFrutas >= globalVariables.frutasQuota &&
 			globalVariables.qtdOvos >= globalVariables.ovosQuota){
@@ -67,6 +70,8 @@ public class GameController : MonoBehaviour {
 
 		//Estado de jogo
 		if(state == 0){
+
+
 
 			//Passo
 			float step = globalVariables.cornSpeed * Time.deltaTime;
@@ -88,6 +93,8 @@ public class GameController : MonoBehaviour {
 			if(milho.transform.position.z < -3.15) state = 3; 
 
 		}else if (state == 1){ // Estado de preparação
+
+			popSound.Play();
 
 			//Volta o milho para a posição inicial
 			Vector3 t = milho.transform.position;
@@ -123,8 +130,6 @@ public class GameController : MonoBehaviour {
 			globalVariables.qtdMilho++;
 
 			state = 1;
-
-		}else if(state == 5){
 
 		}
 

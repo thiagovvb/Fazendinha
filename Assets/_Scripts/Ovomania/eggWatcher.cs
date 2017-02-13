@@ -6,7 +6,6 @@ public class eggWatcher : MonoBehaviour {
 
 	private int qtdOvosBrancos;
 	private int qtdOvosPodres;
-
 	// Use this for initialization
 	void Start () {
 
@@ -30,6 +29,7 @@ public class eggWatcher : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.tag == "Tampa"){
 			if(tag.Equals("OvoBranco")){
+				GameObject.Find("pointAudio").GetComponent<AudioSource>().Play();
 				globalVariables.qtdOvos++;
 				globalVariables.qtdOvosBrancos_Local++;
 				globalVariables.eggSpeed += 0.030f;

@@ -24,6 +24,7 @@ public class characterMonitor : MonoBehaviour {
 				globalVariables.qtdFrutas_Local++;
 				placar.text = "Voce coletou a fruta! Continue assim!";
 				globalVariables.stoneSpeed += 0.050f;
+				GameObject.Find("PointAudio").GetComponent<AudioSource>().Play();
 			}
 		}
 
@@ -36,6 +37,7 @@ public class characterMonitor : MonoBehaviour {
 			gameControllerFrog.remainingFruits--;
 			Destroy(other.gameObject);
 			placar.text = "Voce pegou uma fruta! Agora volte para o outro lado.";
+			GameObject.Find("PointAudio").GetComponent<AudioSource>().Play();
 		}
 
 
@@ -44,6 +46,7 @@ public class characterMonitor : MonoBehaviour {
 			gameControllerFrog.carryingFruit = false;
 			placar.text = "Ah que pena! Voce colidiu com uma pedra!";
 			globalVariables.stoneSpeed -= 0.050f;
+			GameObject.Find("HitAudio").GetComponent<AudioSource>().Play();
 		}
 	}
 

@@ -21,10 +21,14 @@ public class clickInterface : MonoBehaviour {
 	public Canvas creditosCanvas;
 	public Text tx;
 	public TextMesh[] opArray;
+	public AudioSource bgMusic;
+	private int playSoundVar;
 
 
 	// Use this for initialization
 	void Start () {
+
+		playSoundVar = -1;
 
 		setas[0].SetActive(false);
 		setas[1].SetActive(false);
@@ -44,6 +48,8 @@ public class clickInterface : MonoBehaviour {
             perfilMenu.enabled = false;
             criarPerfilMenu.enabled = false;
 			creditosCanvas.enabled = false;
+			placaCamera.enabled = false;
+			camera.enabled = true;
             state = 2;
 		}
 
@@ -53,7 +59,10 @@ public class clickInterface : MonoBehaviour {
 
 		if(input.Equals("Start")){
 
-			if(string.Equals(globalVariables.activeProfile,"")){
+			Debug.Log(globalVariables.activeProfile);
+
+			if(globalVariables.activeProfile.Length > 0){
+				bgMusic.Stop();
 				camera.enabled = true;
 				placaCamera.enabled = false;
 
@@ -132,6 +141,7 @@ public class clickInterface : MonoBehaviour {
 			mainMenu.enabled = true;
 			gameplayMenu.enabled = false;
 			state = 0;
+			bgMusic.Play();
 		}
 
 	}
@@ -186,6 +196,7 @@ public class clickInterface : MonoBehaviour {
 
 					if(hit.collider.gameObject.name.Equals("Op01")){
 						opArray[0].color = Color.red;
+
 						if(Input.GetMouseButtonDown(0)){
 							BtnManager("Start");
 						}
@@ -193,6 +204,7 @@ public class clickInterface : MonoBehaviour {
 
 					if(hit.collider.gameObject.name.Equals("Op02")){
 						opArray[1].color = Color.red;
+
 						if(Input.GetMouseButtonDown(0)){
 							//BtnManager("Start"); Não implementado ainda!
 							BtnManager("Perfis");
@@ -201,6 +213,7 @@ public class clickInterface : MonoBehaviour {
 
 					if(hit.collider.gameObject.name.Equals("Op03")){
 						opArray[2].color = Color.red;
+
 						if(Input.GetMouseButtonDown(0)){
 							BtnManager("Creditos");
 						}
@@ -208,6 +221,7 @@ public class clickInterface : MonoBehaviour {
 
 					if(hit.collider.gameObject.name.Equals("Op04")){
 						opArray[3].color = Color.red;
+
 						if(Input.GetMouseButtonDown(0)){
 							BtnManager("Exit");
 						}
@@ -230,6 +244,10 @@ public class clickInterface : MonoBehaviour {
 				{  
 
 					if(hit.collider.gameObject.name.Equals("celeironovo")){
+						if(playSoundVar != 0){
+							GameObject.Find("PopSound").GetComponent<AudioSource>().Play();
+							playSoundVar = 0;
+						}
 						setas[0].SetActive(true);
 						if(Input.GetMouseButtonDown(0)){
 							SceneManager.LoadScene("JogoOvos");
@@ -237,6 +255,10 @@ public class clickInterface : MonoBehaviour {
 					}else setas[0].SetActive(false);
 
 					if(hit.collider.gameObject.name.Equals("barn_norm")){
+						if(playSoundVar != 1){
+							GameObject.Find("PopSound").GetComponent<AudioSource>().Play();
+							playSoundVar = 1;
+						}
 						setas[1].SetActive(true);
 						if(Input.GetMouseButtonDown(0)){
 							SceneManager.LoadScene("JogoMilho");
@@ -244,6 +266,10 @@ public class clickInterface : MonoBehaviour {
 					}else setas[1].SetActive(false);
 
 					if(hit.collider.gameObject.tag.Equals("Horta")){
+						if(playSoundVar != 2){
+							GameObject.Find("PopSound").GetComponent<AudioSource>().Play();
+							playSoundVar = 2;
+						}
 						setas[2].SetActive(true);
 						if(Input.GetMouseButtonDown(0)){
 							SceneManager.LoadScene("JogoFrogger");
