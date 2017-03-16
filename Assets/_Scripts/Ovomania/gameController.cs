@@ -74,12 +74,14 @@ public class gameController : MonoBehaviour {
 						galinhaSound.Play();
 						Debug.Log("Numero gerado = " + num + " BRANCO");
 						Instantiate(ovoBranco,positions[i],defaultQuaternion);
+
 					}
 
 					if(num >= 50 && num <= 55){
 						galinhaSound.Play();
 						Debug.Log("Numero gerado = " + num + " PODRE");
 						Instantiate(ovoPodre,positions[i],defaultQuaternion);
+
 					}
 					
 				}

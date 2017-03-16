@@ -6,6 +6,7 @@ public class eggWatcher : MonoBehaviour {
 
 	private int qtdOvosBrancos;
 	private int qtdOvosPodres;
+
 	// Use this for initialization
 	void Start () {
 
@@ -27,7 +28,7 @@ public class eggWatcher : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		if(other.gameObject.tag == "Tampa"){
+		if(other.gameObject.tag == "Topo"){
 			if(tag.Equals("OvoBranco")){
 				GameObject.Find("pointAudio").GetComponent<AudioSource>().Play();
 				globalVariables.qtdOvos++;
@@ -39,6 +40,12 @@ public class eggWatcher : MonoBehaviour {
 				globalVariables.eggSpeed -= 0.015f;
 			}
 		}
+			
+	}
+
+	void OnCollisionEnter(Collision col){
+		transform.RotateAround(transform.position,transform.up, -Time.deltaTime * 60 * globalVariables.eggSpeed);
+		transform.Translate(new Vector3(0,0,Time.deltaTime), Space.World);
 	}
 
 }

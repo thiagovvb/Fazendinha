@@ -37,10 +37,12 @@ public class clickInterface : MonoBehaviour {
 		if(!started){
 			gameplayMenu.enabled = false;
 			objetivosMenu.enabled = false;
-            perfilMenu.enabled = false;
+            perfilMenu.enabled = true;
             criarPerfilMenu.enabled = false;
 			creditosCanvas.enabled = false;
-			//camera.enabled = false;
+			mainMenu.enabled = false;
+			camera.enabled = true;
+			placaCamera.enabled = false;
             started = true;
 		}else{
 			mainMenu.enabled = false;
